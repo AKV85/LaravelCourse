@@ -12,13 +12,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $slug
  * @property string $description
  * @property string $image
+ * @property int $category_id
+ * @property string $color
+ * @property string $size
+ * @property string $price
  * @property int $status_id
- * @property int $parent_id
- * @property int $sort_order
  * @property Carbon $created_at
  * @property Carbon updated_at
  */
-class Category extends Model
+class Product extends Model
 {
     use HasFactory;
 }
