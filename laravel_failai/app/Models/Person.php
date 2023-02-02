@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -14,38 +15,46 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $email
  * @property string $phone
  * @property int $user_id
- * @property int $address_id
- * @property Carbon $created_at
- * @property Carbon $updated_at
  * @property User $user
+ * @property int $address_id
  * @property Address $address
+ * @property string $created_at
+ * @property string $updated_at
  */
 class Person extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+        'user_id',
+        'address_id',
+    ];
 
     protected $fillable = [
         'name',
         'surname',
         'personal_code',
         'email',
-        'phone',
-    ];
-    protected $guarded=[
-        'created_at',
-        'updated_at',
-        'user_id',
-        'address_id'
+        'phone'
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function address()
+    public function address(): BelongsTo
     {
         return $this->belongsTo(Address::class);
     }
 
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(Address::class);
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -16,38 +17,35 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $status_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property Order $order
- * @property Product $product
- * @property Status $status
+ *
  */
 class OrderDetails extends Model
 {
     use HasFactory;
-    protected $guarded=[
+
+    protected $guarded = [
         'price',
         'status_id',
-        'created_at',
-        'updated_at'
     ];
 
-    protected $fillable =[
+    protected $fillable = [
         'order_id',
         'product_name',
         'product_id',
-        'quantity',
+        'quantity'
     ];
 
-    public function order()
+    public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
     }
 
-    public function product()
+    public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }
 
-    public function status()
+    public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);
     }

@@ -100,3 +100,7 @@ Route::get('/new-product', function () {
     dd($product);
 
 });
+
+Route::get('/order/{order}', function (Order $order) {
+    return $order->products;
+});

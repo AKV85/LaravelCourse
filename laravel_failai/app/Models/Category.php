@@ -13,17 +13,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $description
  * @property string $image
  * @property int $status_id
+ * @property Status $status
  * @property int $parent_id
+ * @property Category $parent
  * @property int $sort_order
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property Status $status
- * @property Parent $parent
- *
+ * @method static updateOrCreate(string[] $array, array $array1)
  */
 class Category extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'slug',
@@ -34,18 +35,13 @@ class Category extends Model
         'sort_order'
     ];
 
-    protected $guarded = [
-        'created_at',
-        'updated_at'
-    ];
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
 
     public function status()
     {
         return $this->belongsTo(Status::class);
-    }
-
-    public function parent()
-    {
-        return $this->belongsTo(Parent::class);
     }
 }

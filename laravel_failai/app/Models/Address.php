@@ -19,14 +19,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $type
  * @property string $additional_info
  * @property int $user_id
+ * @property User $user
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property User $user
- *
  */
 class Address extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'country',
@@ -39,11 +39,6 @@ class Address extends Model
         'type',
         'additional_info',
         'user_id'
-    ];
-
-    protected $guarded = [
-        'created_at',
-        'updated_at'
     ];
 
     public function user()
