@@ -15,7 +15,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $price
  * @property int $status_id
  * @property Carbon $created_at
- * @property Carbon updated_at
+ * @property Carbon $updated_at
+ * @property Order $order
+ * @property Product $product
+ * @property Status $status
  */
 class OrderDetails extends Model
 {
@@ -33,4 +36,19 @@ class OrderDetails extends Model
         'product_id',
         'quantity',
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 }

@@ -16,7 +16,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $parent_id
  * @property int $sort_order
  * @property Carbon $created_at
- * @property Carbon updated_at
+ * @property Carbon $updated_at
+ * @property Status $status
+ * @property Parent $parent
  *
  */
 class Category extends Model
@@ -36,4 +38,14 @@ class Category extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Parent::class);
+    }
 }

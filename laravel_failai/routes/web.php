@@ -1,5 +1,11 @@
 <?php
 
+use App\Models\Address;
+use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderDetails;
+use App\Models\Payment;
+use App\Models\Person;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -40,8 +46,33 @@ Route::get('/product/{id}', function ($id) {
     return $product;
 });
 
+
+Route::get('/addresses', function () {
+    return Address::query()->with(['user'])->get();
+});
+
+Route::get('/categories', function () {
+    return Category::query()->with(['status'/**,'parent'*/])->get();
+});
+
+Route::get('/orderDetails', function () {
+    return OrderDetails::query()->with(['order','product','status'])->get();
+});
+
+Route::get('/orders', function () {
+    return Order::query()->with(['user','shippingAddress','billingAddress','payment','status'])->get();
+});
+
+Route::get('/payments', function () {
+    return Payment::query()->with(['order','paymentType','status'])->get();
+});
+
+Route::get('/people', function () {
+    return Person::query()->with(['user','address'])->get();
+});
+
 Route::get('/products', function () {
-    return Product::query()->with('category')->get();
+    return Product::query()->with(['category','status'])->get();
 });
 
 Route::get('/products-del', function () {

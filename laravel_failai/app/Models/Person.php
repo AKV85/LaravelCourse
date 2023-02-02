@@ -16,7 +16,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $user_id
  * @property int $address_id
  * @property Carbon $created_at
- * @property Carbon updated_at
+ * @property Carbon $updated_at
+ * @property User $user
+ * @property Address $address
  */
 class Person extends Model
 {
@@ -35,4 +37,15 @@ class Person extends Model
         'user_id',
         'address_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
+
 }

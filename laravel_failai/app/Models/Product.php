@@ -17,13 +17,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $description
  * @property string $image
  * @property int $category_id
- * @property Category $category
  * @property string $color
  * @property string $size
  * @property string $price
  * @property int $status_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property Category $category
+ * @property Status $status
  */
 class Product extends Model
 {
@@ -50,5 +51,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 }

@@ -12,7 +12,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $amount
  * @property int $status_id
  * @property Carbon $created_at
- * @property Carbon updated_at
+ * @property Carbon $updated_at
+ * @property Order $order
+ * @property PaymentType $paymentType
+ * @property Status $status
  */
 class Payment extends Model
 {
@@ -26,4 +29,19 @@ class Payment extends Model
         'updated_at',
         'status_id'
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function paymentType()
+    {
+        return $this->belongsTo(PaymentType::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
 }
