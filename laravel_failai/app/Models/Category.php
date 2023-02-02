@@ -17,8 +17,23 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $sort_order
  * @property Carbon $created_at
  * @property Carbon updated_at
+ *
  */
 class Category extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+        'image',
+        'status_id',
+        'parent_id',
+        'sort_order'
+    ];
+
+    protected $guarded = [
+        'created_at',
+        'updated_at'
+    ];
 }

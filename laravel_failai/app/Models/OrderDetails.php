@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $product_name
  * @property int $product_id
  * @property int $quantity
- * @property int $price
+ * @property string $price
  * @property int $status_id
  * @property Carbon $created_at
  * @property Carbon updated_at
@@ -20,4 +20,17 @@ use Illuminate\Database\Eloquent\Model;
 class OrderDetails extends Model
 {
     use HasFactory;
+    protected $guarded=[
+        'price',
+        'status_id',
+        'created_at',
+        'updated_at'
+    ];
+
+    protected $fillable =[
+        'order_id',
+        'product_name',
+        'product_id',
+        'quantity',
+    ];
 }

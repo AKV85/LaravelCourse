@@ -21,4 +21,18 @@ use Illuminate\Database\Eloquent\Model;
 class Person extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'surname',
+        'personal_code',
+        'email',
+        'phone',
+    ];
+    protected $guarded=[
+        'created_at',
+        'updated_at',
+        'user_id',
+        'address_id'
+    ];
 }

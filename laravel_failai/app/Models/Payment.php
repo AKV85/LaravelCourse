@@ -17,4 +17,13 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'name',
+        'amount',
+    ];
+    protected $guarded=[
+        'created_at',
+        'updated_at',
+        'status_id'
+    ];
 }

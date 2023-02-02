@@ -19,4 +19,18 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+    protected $fillable = [
+
+        'shipping_address_id',
+        'billing_address_id'
+    ];
+
+    protected $guarded = [
+        'user_id',
+        'created_at',
+        'updated_at',
+        'payment_id',
+        'status_id'
+    ];
+
 }

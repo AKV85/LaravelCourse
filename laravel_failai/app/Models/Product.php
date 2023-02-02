@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * Class Product
+ * @package  App\Models
+ *
  * @property int $id
  * @property string $name
  * @property string $slug
@@ -23,4 +26,20 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+        'image',
+        'category_id',
+        'color',
+        'size',
+        'price',
+        'status_id'
+    ];
+
+    protected $guarded = [
+        'created_at',
+        'updated_at'
+    ];
 }
