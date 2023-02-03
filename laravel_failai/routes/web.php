@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PaymentTypeController;
+use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\UserController;
 use App\Models\Address;
 use App\Models\Category;
 use App\Models\Order;
@@ -40,16 +47,26 @@ Route::get('/product/new', function () {
     return $forma;
 });
 
+//php variantas kontrolieriu kurimo arba kai reikia naudoti skirtingus vardus
+//Route::get('/products', [ProductsController::class, 'index']);
+//Route::get('/product/create', [ProductsController::class, 'create']);
+//Route::post('/product', [ProductsController::class, 'store']);
+//Route::get('/product/{product}', [ProductsController::class, 'show']);
+//Route::get('/product/edit', [ProductsController::class, 'edit']);
+//Route::put('/product/{product}', [ProductsController::class, 'update']);
+//Route::delete('/product/{product}', [ProductsController::class, 'destroy']);
 
-Route::get('/products', [ProductsController::class, 'index']);
-Route::get('/product/create', [ProductsController::class, 'create']);
-Route::post('/product', [ProductsController::class, 'store']);
-Route::get('/product/{product}', [ProductsController::class, 'show']);
-Route::get('/product/edit', [ProductsController::class, 'edit']);
-Route::put('/product/{product}', [ProductsController::class, 'update']);
-Route::delete('/product/{product}', [ProductsController::class, 'destroy']);
-
-
+//Laravel variantas controlleriu naudojimo
+Route::resources([
+    'addresses'=>AddressController::class,
+    'categories'=>CategoriesController::class,
+    'orders'=>OrderController::class,
+    'paymentTypes'=>PaymentTypeController::class,
+    'payment'=>PaymentController::class,
+    'persons'=>PersonController::class,
+    'products'=>ProductsController::class,
+    'users'=>UserController::class,
+]);
 
 Route::get('/addresses', function () {
     return Address::query()->with(['user'])->get();

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ProductsController extends Controller
 {
 
-    public function index(): \Illuminate\Database\Eloquent\Collection|array
+    public function index()
     {
         return Product::query()->with(['category','status'])->get();
     }
@@ -27,12 +27,12 @@ class ProductsController extends Controller
     }
     public function edit(Product $product)
     {
-        return view('product.edit',compact('product'));
+        return view('products.edit', compact('product'));
     }
     public function update(Request $request, Product $product)
     {
         $product->update($request->all());
-        return redirect()->route('products.show',$product);
+        return redirect()->route('products.show', $product);
     }
     public function destroy(Product $product)
     {
