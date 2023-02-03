@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
 use App\Models\Address;
 use App\Models\Category;
 use App\Models\Order;
@@ -7,6 +8,7 @@ use App\Models\OrderDetails;
 use App\Models\Payment;
 use App\Models\Person;
 use App\Models\Product;
+use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,26 +27,28 @@ Route::get('/', function () {
 });
 
 
-Route::get('/product/{id}', function ($id) {
-    $product = Product::firstOrCreate(
-        [
-            'id' => $id
-        ],
-        [
-            'name' => 'Londonas to Paris',
-            'category_id' => 5,
-            'price' => 1000,
-            'status_id' => 5,
-            'slug' => 'london-to-parisasdfgh',
-            'description' => 'London to Paris',
-            'image' => 'london-to-paris.jpg',
-            'color' => 'red',
-            'size' => 'XL'
-        ]
-    );
+Route::get('/product/new', function () {
 
-    return $product;
+    $forma = '
+        <form action="/product" method="POST">
+            <input type="text" name="inputas1">
+            <input type="text" name="inputas2">
+            <input type="submit" value="SEND">
+        </form>
+    ';
+
+    return $forma;
 });
+
+
+Route::get('/products', [ProductsController::class, 'index']);
+Route::get('/product/create', [ProductsController::class, 'create']);
+Route::post('/product', [ProductsController::class, 'store']);
+Route::get('/product/{product}', [ProductsController::class, 'show']);
+Route::get('/product/edit', [ProductsController::class, 'edit']);
+Route::put('/product/{product}', [ProductsController::class, 'update']);
+Route::delete('/product/{product}', [ProductsController::class, 'destroy']);
+
 
 
 Route::get('/addresses', function () {
@@ -73,6 +77,10 @@ Route::get('/people', function () {
 
 Route::get('/products', function () {
     return Product::query()->with(['category','status'])->get();
+});
+
+Route::post('/product', function (Request $request) {
+    return $request->all();
 });
 
 Route::get('/products-del', function () {
