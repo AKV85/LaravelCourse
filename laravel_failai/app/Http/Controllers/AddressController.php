@@ -6,12 +6,10 @@ use App\Models\Address;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
-
 {
-
     public function index()
     {
-        return Address::query()->with(['user'])->get();
+        return view('addresses.index');
     }
     public function create()
     {
@@ -20,11 +18,11 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         $address = Address::create($request->all());
-        return redirect()->route('addresses.show',$address);
+        return redirect()->route('addresses.show', $address);
     }
     public function show(Address $address)
     {
-        return $address;
+        return view('address.show', ['address' => $address]);
     }
     public function edit(Address $address)
     {

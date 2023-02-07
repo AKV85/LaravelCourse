@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use App\Models\Address;
 use App\Models\Category;
@@ -29,23 +31,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', HomeController::class);
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 
-Route::get('/product/new', function () {
-
-    $forma = '
-        <form action="/product" method="POST">
-            <input type="text" name="inputas1">
-            <input type="text" name="inputas2">
-            <input type="submit" value="SEND">
-        </form>
-    ';
-
-    return $forma;
-});
+//Route::get('/product/new', function () {
+//
+//    $forma = '
+//        <form action="/product" method="POST">
+//            <input type="text" name="inputas1">
+//            <input type="text" name="inputas2">
+//            <input type="submit" value="SEND">
+//        </form>
+//    ';
+//
+//    return $forma;
+//});
 
 //php variantas kontrolieriu kurimo arba kai reikia naudoti skirtingus vardus
 //Route::get('/products', [ProductsController::class, 'index']);
@@ -65,67 +69,68 @@ Route::resources([
     'payment'=>PaymentController::class,
     'persons'=>PersonController::class,
     'products'=>ProductsController::class,
+    'statuses'=>ProductsController::class,
     'users'=>UserController::class,
 ]);
 
-Route::get('/addresses', function () {
-    return Address::query()->with(['user'])->get();
-});
-
-Route::get('/categories', function () {
-    return Category::query()->with(['status'/**,'parent'*/])->get();
-});
-
-Route::get('/orderDetails', function () {
-    return OrderDetails::query()->with(['order','product','status'])->get();
-});
-
-Route::get('/orders', function () {
-    return Order::query()->with(['user','shippingAddress','billingAddress','payment','status'])->get();
-});
-
-Route::get('/payments', function () {
-    return Payment::query()->with(['order','paymentType','status'])->get();
-});
-
-Route::get('/people', function () {
-    return Person::query()->with(['user','address'])->get();
-});
-
-Route::get('/products', function () {
-    return Product::query()->with(['category','status'])->get();
-});
-
-Route::post('/product', function (Request $request) {
-    return $request->all();
-});
-
-Route::get('/products-del', function () {
-    return Product::all()->map(function ($product) {
-        $product->delete();
-    });
-});
-
-Route::get('/new-product', function () {
-
-    $duomenys = [
-        'name' => 'Apple',
-        'category_id' => 5,
-        'price' => 1000,
-        'status_id' => 5,
-        'slug' => 'apple',
-        'description' => 'Mmmm..',
-        'image' => 'london-to-paris.jpg',
-        'color' => 'red',
-        'size' => 'XL',
-    ];
-
-    $product  = Product::create($duomenys);
-
-    dd($product);
-
-});
-
-Route::get('/order/{order}', function (Order $order) {
-    return $order->products;
-});
+//Route::get('/addresses', function () {
+//    return Address::query()->with(['user'])->get();
+//});
+//
+//Route::get('/categories', function () {
+//    return Category::query()->with(['status'/**,'parent'*/])->get();
+//});
+//
+//Route::get('/orderDetails', function () {
+//    return OrderDetails::query()->with(['order','product','status'])->get();
+//});
+//
+//Route::get('/orders', function () {
+//    return Order::query()->with(['user','shippingAddress','billingAddress','payment','status'])->get();
+//});
+//
+//Route::get('/payments', function () {
+//    return Payment::query()->with(['order','paymentType','status'])->get();
+//});
+//
+//Route::get('/people', function () {
+//    return Person::query()->with(['user','address'])->get();
+//});
+//
+//Route::get('/products', function () {
+//    return Product::query()->with(['category','status'])->get();
+//});
+//
+//Route::post('/product', function (Request $request) {
+//    return $request->all();
+//});
+//
+//Route::get('/products-del', function () {
+//    return Product::all()->map(function ($product) {
+//        $product->delete();
+//    });
+//});
+//
+//Route::get('/new-product', function () {
+//
+//    $duomenys = [
+//        'name' => 'Apple',
+//        'category_id' => 5,
+//        'price' => 1000,
+//        'status_id' => 5,
+//        'slug' => 'apple',
+//        'description' => 'Mmmm..',
+//        'image' => 'london-to-paris.jpg',
+//        'color' => 'red',
+//        'size' => 'XL',
+//    ];
+//
+//    $product  = Product::create($duomenys);
+//
+////    dd($product);
+//
+//});
+//
+//Route::get('/order/{order}', function (Order $order) {
+//    return $order->products;
+//});
