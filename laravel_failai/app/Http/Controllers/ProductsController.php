@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Managers\ProductManager;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
+ public function __construct(protected ProductManager $manager)
+{
+}
+
     public function index()
     {
         $products = Product::query()->with(['category', 'status'])->get();
@@ -21,6 +26,20 @@ class ProductsController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required','max:255'],
+            'slug' => ['required','max:255'],
+            'price' => ['required','integer'],
+            'category_id' => ['required','integer'],
+            'status_id' => ['required','integer'],
+
+
+            'description' => ['nullable','string','max:65535'],
+            'image' => ['nullable'],
+            'color' => ['nullable'],
+            'size' => ['nullable'],
+        ]);
+
         $product = Product::create($request->all());
         return redirect()->route('products.show', $product);
     }
@@ -37,6 +56,20 @@ class ProductsController extends Controller
 
     public function update(Request $request, Product $product)
     {
+        $request->validate([
+            'name' => ['required','max:255'],
+            'slug' => ['required','max:255'],
+            'price' => ['required','integer'],
+            'category_id' => ['required','integer'],
+            'status_id' => ['required','integer'],
+
+
+            'description' => ['nullable','string'],
+            'image' => ['nullable'],
+            'color' => ['nullable'],
+            'size' => ['nullable'],
+        ]);
+
         $product->update($request->all());
         return redirect()->route('products.show', $product);
     }

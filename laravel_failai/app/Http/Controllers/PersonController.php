@@ -14,12 +14,14 @@ class PersonController extends Controller
 
     public function index()
     {
-        return view('person.index');
-    }
+        $persons = Person::query()->with(['user', 'address'])->get();
 
+        return view('persons.index',
+            compact('persons'));
+    }
     public function create()
     {
-        return view('person.create');
+        return view('persons.create');
     }
 
     public function store(Request $request)
@@ -30,12 +32,12 @@ class PersonController extends Controller
 
     public function show(Person $person)
     {
-        return view('person.show', ['person' => $person]);
+        return view('persons.show', ['person' => $person]);
     }
 
     public function edit(Person $person)
     {
-        return view('person.edit', compact('person'));
+        return view('persons.edit', compact('person'));
     }
 
     public function update(Request $request, Person $person)

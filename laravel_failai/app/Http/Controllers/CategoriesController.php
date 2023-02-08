@@ -9,7 +9,9 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        return Category::query()->with(['status','parent'])->get();
+        $categories = Category::query()->with(['status','parent'])->get();
+        return view('categories.index',
+        compact('categories'));
     }
     public function create()
     {
@@ -22,7 +24,7 @@ class CategoriesController extends Controller
     }
     public function show(Category $category)
     {
-        return $category;
+        return view('categories.show', ['category' => $category]);
     }
     public function edit(Category $category)
     {

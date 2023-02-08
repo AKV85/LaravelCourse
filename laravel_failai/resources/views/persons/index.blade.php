@@ -1,8 +1,10 @@
 <x-layout>
     @include('partials._hero')
     @include('partials._search')
-    <div class="row">
-        <div class="col s12">
+    <div class="row w-full flex items-center
+    justify-start font-monospace bg-laravel text-white
+    opacity-90 md:justify-center">
+        <div class="col s12 ">
             <h1>Products</h1>
             <a href="{{route('persons.create')}}" class="btn btn-primary">Create</a>
             <table class="table">
@@ -21,8 +23,8 @@
                         <td>{{$person->name}}</td>
                         <td>{{$person->surname}}</td>
                         <td>
-                            <a href="{{route('$persons.edit', $person->id)}}" class="btn btn-primary">Edit</a>
-                            <form action="{{route('$persons.destroy', $person->id)}}" method="post">
+                            <a href="{{route('persons.edit', $person->id)}}" class="btn btn-primary">Edit</a>
+                            <form action="{{route('persons.destroy', $person->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
