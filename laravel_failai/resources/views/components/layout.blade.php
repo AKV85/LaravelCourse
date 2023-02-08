@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{{asset('images/favicon.ico')}}" />
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"
-    />
+{{--    <link href="/css/bootstrap.css" rel="stylesheet">--}}
+{{--    <link--}}
+{{--        rel="stylesheet"--}}
+{{--        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"--}}
+{{--        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="--}}
+{{--        crossorigin="anonymous"--}}
+{{--        referrerpolicy="no-referrer"--}}
+{{--    />--}}
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -39,15 +39,29 @@
         /></a>
     <ul class="flex space-x-6 mr-6 text-lg">
         <li>
-            <a href="register.html" class="hover:text-laravel"
-            ><i class="fa-solid fa-user-plus"></i> Registracija</a
-            >
+            <a href="{{route('addresses.index')}}" class="hover:text-laravel">
+                Adresai
+            </a>
         </li>
         <li>
-            <a href="login.html" class="hover:text-laravel"
-            ><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                Prisijungimas</a
-            >
+            <a href="{{route('categories.index')}}" class="hover:text-laravel">
+                Kategorijos
+            </a>
+        </li>
+        <li>
+            <a href="{{route('orders.index')}}" class="hover:text-laravel">
+                Uzsakymai
+            </a>
+        </li>
+        <li>
+            <a href="{{route('persons.index')}}" class="hover:text-laravel">
+                Asmenys
+            </a>
+        </li>
+        <li>
+            <a href="{{route('products.index')}}" class="hover:text-laravel">
+                Produktai
+            </a>
         </li>
     </ul>
 </nav>

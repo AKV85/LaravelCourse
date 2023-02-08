@@ -48,17 +48,18 @@
                             {{$product->price}} $
                         </h3></td>
                     <td class="text-right">
-                        <button
-                            class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
-                        ><a href="{{route('products.edit', $product->id)}}" class="btn btn-primary"> edit
-                            </a></button>
+                        <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
+                            <a href="{{route('products.edit', $product->id)}}"
+                               class="btn btn-primary">Redaguoti
+                            </a>
+                        </button>
                         <form action="{{route('products.destroy', $product->id)}}" method="post">
                             @csrf
                             @method('DELETE')
                             <button
                                 type="submit"
                                 class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
-                            > Delete
+                            > Pašalinti
                             </button>
 
                         </form>
@@ -67,6 +68,7 @@
                 </tr>
             @endforeach
             </tbody>
-        </table><hr>
+        </table>
+        <hr>
     </x-card>
 </x-layout>

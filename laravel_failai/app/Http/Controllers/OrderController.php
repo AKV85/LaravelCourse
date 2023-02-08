@@ -6,9 +6,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
-
 {
-
     public function index()
     {
         return Order::query()->with(['user','shippingAddress',
@@ -20,6 +18,13 @@ class OrderController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id' => ['required', 'exists:users,id'],
+            'shipping_address_id' => ['required', 'exists:addresses,id'],
+            'billing_address_id' => ['required', 'exists:addresses,id'],
+            'status_id' => ['required', 'exists:statuses,id'],
+        ]);
+
         $order = Order::create($request->all());
         return redirect()->route('orders.show',$order);
     }

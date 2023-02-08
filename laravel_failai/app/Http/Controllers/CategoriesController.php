@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Managers\CategoryManager;
 use App\Models\Category;
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
+
+    public function __construct(protected CategoryManager $manager)
+    {
+    }
+
     public function index()
     {
         $categories = Category::query()->with(['status','parent'])->get();
@@ -17,7 +24,8 @@ class CategoriesController extends Controller
     {
         return view('categories.create');
     }
-    public function store(Request $request)
+
+    public function store(CategoryRequest $request)
     {
         $category = Category::create($request->all());
         return redirect()->route('categories.show',$category);
@@ -30,7 +38,7 @@ class CategoriesController extends Controller
     {
         return view('categories.edit',compact('category'));
     }
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $category->update($request->all());
         return redirect()->route('categories.show',$category);

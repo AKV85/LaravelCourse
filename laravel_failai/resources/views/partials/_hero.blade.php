@@ -15,12 +15,17 @@
             Smagu tave matyti ;-)
         </p>
         <div>
-            <a
-                href="register.html"
-                class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black"
-            >Registracija</a
-            >
+            <a href="register.html"
+               class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black">
+                Registracija
+            </a>
+
+            <a href="login.html"
+               class="inline-block border-2 border-white text-white py-2 px-4 rounded-xl uppercase mt-2 hover:text-black hover:border-black">
+                Prisijungimas
+            </a>
         </div>
+
     </div>
 </section>
 

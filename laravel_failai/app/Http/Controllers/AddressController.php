@@ -2,27 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddressRequest;
+use App\Managers\AddressManager;
 use App\Models\Address;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
+    public function __construct(protected AddressManager $manager)
+    {
+    }
+
+
     public function index()
     {
-        return view('addresses.index');
+        $addresses = Address::query()->with(['user'])->get();
+        return view('addresses.index', compact('addresses'));
     }
     public function create()
     {
         return view('addresses.create');
     }
-    public function store(Request $request)
+    public function store(AddressRequest $request)
     {
+
         $address = Address::create($request->all());
         return redirect()->route('addresses.show', $address);
     }
     public function show(Address $address)
     {
-        return view('address.show', ['address' => $address]);
+        return view('addresses.show', ['address' => $address]);
     }
     public function edit(Address $address)
     {
