@@ -71,4 +71,7 @@
         </table>
         <hr>
     </x-card>
+    <div class="mt-6 p-4" >
+        {{$categories->links()}}
+    </div>
 </x-layout>

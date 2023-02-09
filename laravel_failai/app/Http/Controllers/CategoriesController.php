@@ -17,8 +17,9 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::query()->with(['status','parent'])->get();
-        return view('categories.index',
-        compact('categories'));
+        return view('categories.index',['categories'=>Category::orderBy("id")->paginate(6)
+        ]);
+//        compact('categories'));
     }
     public function create()
     {
