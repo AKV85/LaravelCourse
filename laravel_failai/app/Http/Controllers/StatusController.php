@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Managers\StatusManager;
 use App\Models\Status;
 use Illuminate\Http\Request;
 
 class StatusController extends Controller
 {
+    public function __construct(protected StatusManager $manager)
+    {
+    }
     public function index()
     {
-        return view('statuses.index');
-    }
+        $statuses = Status::query()->get();
+
+        return view('statuses.index', compact('statuses'));    }
 
     public function create()
     {
@@ -19,10 +24,6 @@ class StatusController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-            'type' => ['required', 'string', 'in_array:order,payment,category,user,product,order_details'],
-        ]);
 
         $status = Status::create($request->all());
         return redirect()->route('statuses.show', $status);
@@ -30,7 +31,7 @@ class StatusController extends Controller
 
     public function show(Status $status)
     {
-        return $status;
+        return view('statuses.show', ['status' => $status]);
     }
 
     public function edit(Status $status)

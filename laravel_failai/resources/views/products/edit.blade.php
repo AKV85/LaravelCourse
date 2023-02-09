@@ -81,7 +81,7 @@
                     <input
                         type="text"
                         class="border border-gray-200 rounded p-2 w-full"
-                        name="email"
+                        name="image"
                         value="{{$product->image}}"                    />
 
                     @error('image')
@@ -126,6 +126,7 @@
                     <label for="size" class="inline-block text-lg mb-2">
                         size                    </label>
                     <input
+                        name="size"
                         type="text"
                         class="border border-gray-200 rounded p-2 w-full"
                         value="{{$product->size}}"                    />

@@ -4,34 +4,34 @@
         <div class="card">
             <div class="card-image">
                 <img src="https://picsum.photos/300" alt="img">
-                <span class="card-title">{{ $user->name }}</span>
+                <span class="card-title">{{ $orderDetails->order_id }}</span>
             </div>
             <div class="card-content">
-                <div>ID: {{$user->id}}</div>
-                <p>Price: {{ $user->name }}</p>
-                <p>email: {{ $user->email }}</p>
-                <p>email_verified_at: {{ $user->email_verified_at }}</p>
-                <p>password: {{ $user->password }}</p>
-                <p>remember_token: {{ $user->remember_token }}</p>
-
-                <p>Creation date: {{ $user->created_at }}</p>
-                <p>Last updated: {{ $user->updated_at }}</p>
+                <div>ID: {{$orderDetails->id}}</div>
+                <p>order_id: {{ $orderDetails->order_id }}</p>
+                <p>product_name: {{ $orderDetails->product_name }}</p>
+                <p>product_id: {{ $orderDetails->product_id }}</p>
+                <p>quantity: {{ $orderDetails->quantity }}</p>
+                <p>price: {{ $orderDetails->price }}</p>
+                <p>status_id: {{ $orderDetails->status_id }}</p>
+                <p>Creation date: {{ $orderDetails->created_at }}</p>
+                <p>Last updated: {{ $orderDetails->updated_at }}</p>
             </div>
             <div class="card-action">
                 <nav class="flex justify-between items-center mb-4">
-                    <a href="/users" class="text-black ml-4"> Atgal </a>
+                    <a href="/$ordersDetails" class="text-black ml-4"> Atgal </a>
 
                     <ul class="flex space-x-6 mr-6 text-lg">
                         <li>
                             <button
                                 class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                                <a href="{{route('users.edit', $user->id)}}"
+                                <a href="{{route('ordersDetails.edit', $orderDetails->id)}}"
                                    class="btn btn-primary"> Redaguoti
                                 </a>
                             </button>
                         </li>
                         <li>
-                            <form action="{{route('users.destroy', $user->id)}}" method="post">
+                            <form action="{{route('ordersDetails.destroy', $orderDetails->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button

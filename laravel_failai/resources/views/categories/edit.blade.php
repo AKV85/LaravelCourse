@@ -67,7 +67,7 @@
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="email"
+                    name="image"
                     value="{{$category->image}}"                    />
 
                 @error('image')
@@ -88,7 +88,7 @@
                     name="status_id"
                     value="{{$category->status_id}} "                   />
 
-                @error('category_id')
+                @error('status_id')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>

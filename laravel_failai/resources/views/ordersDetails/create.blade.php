@@ -1,100 +1,114 @@
 <x-layout>
     @include('partials._hero')
     <x-card class="p-10 max-w-lg mx-auto mt-24">
-        <h1>Kurti Uzsakyma</h1><br>
+        <h1>OrderDetails kategorija</h1><br>
         <hr>
         <span>Sukurimo forma</span>
         <hr>
-        <form action="{{route('orders.store')}}" method="post">
+        <form action="{{route('ordersDetails.store')}}" method="post">
 
             @csrf
             <div class="mb-6">
                 <label
-                    for="user_id"
+                    for="order_id"
                     class="inline-block text-lg mb-2">
-                    user_id
+                    order_id
                 </label>
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="user_id"
-                    value="{{old('user_id'}}"
+                    name="order_id"
+                    value="{{old('order_id')}}"
                 />
 
-                @error('user_id')
+                @error('order_id')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
             <div class="mb-6">
-                <label for="shipping_address" class="inline-block text-lg mb-2"
-                >shipping_address
-                </label
-                >
+                <label for="product_name" class="inline-block text-lg mb-2">
+                    product_name
+                </label>
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="shipping_address"
+                    name="product_name"
                     placeholder="Pvz: ...."
-                    value="{{old('shipping_address'}}"
+                    value="{{old('product_name')}}"
                 />
 
-                @error('shipping_address')
+                @error('product_name')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
             <div class="mb-6">
                 <label
-                    for="billing_address"
+                    for="product_id"
                     class="inline-block text-lg mb-2"
-                >billing_address</label
+                >product_id</label
                 >
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="billing_address"
+                    name="product_id"
                     placeholder="Pvz: ....."
-                    value="{{old('billing_address'}}"                    />
+                    value="{{old('product_id')}}"                    />
 
-                @error('billing_address')
+                @error('product_id')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
             <div class="mb-6">
-                <label for="payment_id" class="inline-block text-lg mb-2"
-                >payment_id</label
+                <label for="quantity" class="inline-block text-lg mb-2"
+                >quantity</label
                 >
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="payment_id"
-                    value="{{old('payment_id'}}"                    />
+                    name="quantity"
+                    value="{{old('quantity')}}"                    />
 
-                @error('payment_id')
+                @error('quantity')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
+{{--            <div class="mb-6">--}}
+{{--                <label--}}
+{{--                    for="price"--}}
+{{--                    class="inline-block text-lg mb-2"--}}
+{{--                >--}}
+{{--                    price--}}
+{{--                </label>--}}
+{{--                <input--}}
+{{--                    type="text"--}}
+{{--                    class="border border-gray-200 rounded p-2 w-full"--}}
+{{--                    name="price"--}}
+{{--                    value="{{old('price')}} "                   />--}}
+
+{{--                @error('price')--}}
+{{--                <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
+{{--                @enderror--}}
+{{--            </div>--}}
+
             <div class="mb-6">
-                <label
-                    for="status_id"
-                    class="inline-block text-lg mb-2"
-                >
+                <label for="status_id" class="inline-block text-lg mb-2">
                     status_id
                 </label>
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
                     name="status_id"
-                    value="{{old('status_id'}} "                   />
+                    placeholder="Pvz: ..."
+                    value="{{old('status_id')}}"                    />
 
                 @error('status_id')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
-
 
 
             <div class="mb-6">
@@ -106,7 +120,7 @@
                     Kurti
                 </button>
 
-                <a href="/orders" class="text-black ml-4"> Atgal </a>
+                <a href="/ordersDetails" class="text-black ml-4"> Atgal </a>
             </div>
         </form>
     </x-card>

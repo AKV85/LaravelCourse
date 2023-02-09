@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProductRequest extends FormRequest
 {
@@ -34,10 +35,11 @@ class ProductRequest extends FormRequest
 
             'description' => ['nullable', 'string', 'min:3'],
             'image' => ['nullable'],
-            'color' => ['nullable'],
-//                'in_array:Red,Green,Blue,Black,White'],
-            'size' => ['nullable']
-//                'in_array:XS,S,M,L,XL'],
+//            'color' => ['nullable'],
+            'color' => ['nullable', Rule::in(['Red','red','Green','Blue','Black','White'])],
+//                "in_array:'Red','Green','Blue','Black','White'"],
+            'size' => ['nullable',
+                Rule::in(['XS','S','M','L','XL'])]
         ];
     }
 

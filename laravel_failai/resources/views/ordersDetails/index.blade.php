@@ -5,55 +5,55 @@
         {{--    <div class="row">--}}
         {{--        <div class="col s12">--}}
         <hr>
-        <p class="text-center text-xxl-center">Persons</p><br>
+        <p class="text-center text-xxl-center">Orders Details</p><br>
         <hr>
         <a
-            href="{{route('persons.create')}}"
+            href="{{route('ordersDetails.create')}}"
             class="absolute top-3/3 right-10 bg-black text-white
                   py-2 px-5">
-            Kurti nauja person
+            Kurti nauja orderDetails
         </a>
         <table class="table-auto">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Image</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>user_id</th>
+                <th>Order_id</th>
+                <th>Product_name</th>
+                <th>quantity</th>
                 <th>Veiksmai</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($persons as $person)
+            @foreach($ordersDetails as $orderDetails)
 
                 <tr>
                     <td><h3 class="text-2xl">
-                            {{$person->id}}
+                            {{$orderDetails->id}}
                         </h3></td>
                     <td><img class="hidden w-48 mr-6 md:block"
                              src="https://picsum.photos/50"
                              alt="image"/></td>
                     <td><h3 class="text-2xl">
-                            <a href="/persons/{{$person->id}}">
-                                {{$person->name}}</a>
+                            <a href="/ordersDetails/{{$orderDetails->id}}">
+                                {{$orderDetails->order_id}}</a>
                         </h3>
                     </td>
                     <td class="text-center">
                         <div class="text-xl font-bold mb-4">
-                            {{$person->surname}}
+                            {{$orderDetails->product_name}}
                         </div>
                     </td>
                     <td><h3 class="text-2xl">
-                            {{$person->user->name}}
+                            {{$orderDetails->quantity}}
                         </h3></td>
                     <td class="text-right">
                         <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                            <a href="{{route('persons.edit', $person->id)}}"
+                            <a href="{{route('ordersDetails.edit', $orderDetails->id)}}"
                                class="btn btn-primary">Redaguoti
                             </a>
                         </button>
-                        <form action="{{route('persons.destroy', $person->id)}}" method="post">
+                        <form action="{{route('ordersDetails.destroy', $orderDetails->id)}}" method="post">
                             @csrf
                             @method('DELETE')
                             <button

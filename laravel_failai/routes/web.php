@@ -4,6 +4,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\PersonController;
@@ -69,8 +70,10 @@ Route::resources([
     'payment'=>PaymentController::class,
     'persons'=>PersonController::class,
     'products'=>ProductsController::class,
-    'statuses'=>ProductsController::class,
+    'statuses'=>StatusController::class,
     'users'=>UserController::class,
+    'ordersDetails'=>OrderDetailsController::class,
+
 ]);
 
 //Route::get('/addresses', function () {

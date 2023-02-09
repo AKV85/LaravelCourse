@@ -132,6 +132,7 @@
                     size
                 </label>
                 <input
+                    name="size"
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
                     value="{{old('size')}}"
