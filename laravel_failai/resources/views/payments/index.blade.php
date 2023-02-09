@@ -5,45 +5,55 @@
         {{--    <div class="row">--}}
         {{--        <div class="col s12">--}}
         <hr>
-        <p class="text-center text-xxl-center">PaymentTypes</p><br>
+        <p class="text-center text-xxl-center"> Payments</p><br>
         <hr>
         <a
-            href="{{route('paymentTypes.create')}}"
+            href="{{route('payments.create')}}"
             class="absolute top-3/3 right-10 bg-black text-white
                   py-2 px-5">
-            Kurti nauja
+            Kurti nauja Paymenta
         </a>
         <table class="table-auto">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Image</th>
-                <th>Paymento pavadinimas</th>
+                <th>Order_id</th>
+                <th>Payment_type_id</th>
+                <th>quantity</th>
                 <th>Veiksmai</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($paymentTypes as $paymentType)
+            @foreach($payments as $payment)
 
                 <tr>
                     <td><h3 class="text-2xl">
-                            {{$paymentType->id}}
+                            {{$payment->id}}
                         </h3></td>
                     <td><img class="hidden w-48 mr-6 md:block"
                              src="https://picsum.photos/50"
                              alt="image"/></td>
                     <td><h3 class="text-2xl">
-                            <a href="/paymentTypes/{{$paymentType->id}}">
-                                {{$paymentType->name}}</a>
+                            <a href="/payments/{{$payment->id}}">
+                                {{$payment->order_id}}</a>
                         </h3>
                     </td>
+                    <td class="text-center">
+                        <div class="text-xl font-bold mb-4">
+                            {{$payment->payment_type_id}}
+                        </div>
+                    </td>
+                    <td><h3 class="text-2xl">
+                            {{$payment->amount}}
+                        </h3></td>
                     <td class="text-right">
                         <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                            <a href="{{route('paymentTypes.edit', $paymentType->id)}}"
+                            <a href="{{route('payments.edit', $payment->id)}}"
                                class="btn btn-primary">Redaguoti
                             </a>
                         </button>
-                        <form action="{{route('paymentTypes.destroy', $paymentType->id)}}" method="post">
+                        <form action="{{route('payments.destroy', $payment->id)}}" method="post">
                             @csrf
                             @method('DELETE')
                             <button

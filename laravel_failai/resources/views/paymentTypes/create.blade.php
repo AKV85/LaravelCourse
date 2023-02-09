@@ -1,7 +1,41 @@
-@extends('layouts.admin.main')
+<x-layout>
+    @include('partials._hero')
+    <x-card class="p-10 max-w-lg mx-auto mt-24">
+        <h1>Kurti produkta</h1><br>
+        <hr>
+        <span>Sukurimo forma</span>
+        <hr>
+        <form action="{{route('paymentTypes.store')}}" method="post">
+            @csrf
+            <div class="mb-6">
+                <label
+                    for="name"
+                    class="inline-block text-lg mb-2">
+                    Produkto pavadinimas
+                </label>
+                <input
+                    type="text"
+                    class="border border-gray-200 rounded p-2 w-full"
+                    name="name"
+                    value="{{old('name')}}"
+                />
 
-@section('title', 'Pavadinimas')
+                @error('name')
+                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
+            </div>
 
-@section('content')
+            <div class="mb-6">
 
-@endsection
+                <button
+                    type="submit"
+                    class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
+                >
+                    Kurti
+                </button>
+
+                <a href="/paymentTypes" class="text-black ml-4"> Atgal </a>
+            </div>
+        </form>
+    </x-card>
+</x-layout>

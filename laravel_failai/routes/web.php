@@ -67,7 +67,7 @@ Route::resources([
     'categories'=>CategoriesController::class,
     'orders'=>OrderController::class,
     'paymentTypes'=>PaymentTypeController::class,
-    'payment'=>PaymentController::class,
+    'payments'=>PaymentController::class,
     'persons'=>PersonController::class,
     'products'=>ProductsController::class,
     'statuses'=>StatusController::class,

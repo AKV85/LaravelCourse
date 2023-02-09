@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentTypeRequest;
+use App\Managers\PaymentTypeManager;
 use App\Models\PaymentType;
 use Illuminate\Http\Request;
 
 class PaymentTypeController extends Controller
 {
+    public function __construct(protected PaymentTypeManager $manager)
+    {
+    }
     public function index()
     {
-        return PaymentType::query()->get();
+        $paymentTypes = PaymentType::query()->get();
+        return view('paymentTypes.index', compact('paymentTypes'));
+
     }
 
     public function create()
@@ -17,18 +24,15 @@ class PaymentTypeController extends Controller
         return view('paymentTypes.create');
     }
 
-    public function store(Request $request)
+    public function store(PaymentTypeRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:255'],
-        ]);
         $paymentType = PaymentType::create($request->all());
         return redirect()->route('paymentTypes.show', $paymentType);
     }
 
     public function show(PaymentType $paymentType)
     {
-        return $paymentType;
+        return view('paymentTypes.show', ['paymentType' => $paymentType]);
     }
 
     public function edit(PaymentType $paymentType)
@@ -36,7 +40,7 @@ class PaymentTypeController extends Controller
         return view('paymentTypes.edit', compact('paymentType'));
     }
 
-    public function update(Request $request, PaymentType $paymentType)
+    public function update(PaymentTypeRequest $request, PaymentType $paymentType)
     {
         $paymentType->update($request->all());
         return redirect()->route('paymentTypes.show', $paymentType);

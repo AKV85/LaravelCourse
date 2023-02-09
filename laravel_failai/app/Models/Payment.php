@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
+ *  Class Payment
+ * @package App\Models
+ *
  * @property int $id
  * @property int $order_id
  * @property Order $order

@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * Class Product
+ * @package App\Models
+ *
  * @property int $id
  * @property string $name
  * @property $created_at
