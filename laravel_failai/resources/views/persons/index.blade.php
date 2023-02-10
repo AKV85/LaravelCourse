@@ -48,21 +48,9 @@
                             {{$person->user->name}}
                         </h3></td>
                     <td class="text-right">
-                        <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                            <a href="{{route('persons.edit', $person->id)}}"
-                               class="btn btn-primary">Redaguoti
-                            </a>
-                        </button>
-                        <form action="{{route('persons.destroy', $person->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button
-                                type="submit"
-                                class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
-                            > Pašalinti
-                            </button>
-
-                        </form>
+                        <div class="card-action">
+                       <x-forms.buttons.action :model="$person" mainRoute="persons" :showBack="false" />
+                        </div>
                     </td>
 
                 </tr>
