@@ -7,7 +7,7 @@ use App\Rules\PersonalCodeRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class PersonRequest extends FormRequest
+class PersonUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +28,8 @@ class PersonRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:255', new FirstUppercaseRule()],
-            'surname' => ['required', 'string', 'min:3', 'max:255'],
-            'personal_code' => ['nullable', 'string', 'min:3', 'max:255', new PersonalCodeRule()],
+            'surname' => ['required', 'string', 'min:3', 'max:255', new FirstUppercaseRule()],
+            'personal_code' => ['nullable', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'email'],
             'phone' => ['nullable', 'string', 'min:4', 'max:255'],
         ];
@@ -43,6 +43,6 @@ class PersonRequest extends FormRequest
     public function messages()
     {
         return [
-          ];
+        ];
     }
 }
