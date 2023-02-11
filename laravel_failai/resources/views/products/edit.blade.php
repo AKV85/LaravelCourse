@@ -21,156 +21,156 @@
 {{--    </form>--}}
 {{--            <form method="POST" action="/products" enctype="multipart/form-data">--}}
                 @csrf
+{{--                <div class="mb-6">--}}
+{{--                    <label--}}
+{{--                        for="name"--}}
+{{--                        class="inline-block text-lg mb-2">--}}
+{{--                        Produkto pavadinimas--}}
+{{--                    </label>--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        class="border border-gray-200 rounded p-2 w-full"--}}
+{{--                        name="name"--}}
+{{--                        value="{{$product->name}}"--}}
+{{--                    />--}}
+
+{{--                    @error('name')--}}
+{{--                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+
+{{--                <div class="mb-6">--}}
+{{--                    <label for="title" class="inline-block text-lg mb-2"--}}
+{{--                    >Slug </label--}}
+{{--                    >--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        class="border border-gray-200 rounded p-2 w-full"--}}
+{{--                        name="slug"--}}
+{{--                        placeholder="Pvz: ...."--}}
+{{--                        value="{{$product->slug}}"--}}
+{{--                    />--}}
+
+{{--                    @error('slug')--}}
+{{--                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+
+{{--                <div class="mb-6">--}}
+{{--                    <label--}}
+{{--                        for="description"--}}
+{{--                        class="inline-block text-lg mb-2"--}}
+{{--                    >Aprasymas</label--}}
+{{--                    >--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        class="border border-gray-200 rounded p-2 w-full"--}}
+{{--                        name="description"--}}
+{{--                        placeholder="Pvz: ....."--}}
+{{--                        value="{{$product->description}}"                    />--}}
+
+{{--                    @error('description')--}}
+{{--                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+
+{{--                <div class="mb-6">--}}
+{{--                    <label for="image" class="inline-block text-lg mb-2"--}}
+{{--                    >Paveiksliukas</label--}}
+{{--                    >--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        class="border border-gray-200 rounded p-2 w-full"--}}
+{{--                        name="image"--}}
+{{--                        value="{{$product->image}}"                    />--}}
+
+{{--                    @error('image')--}}
+{{--                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+
+{{--                <div class="mb-6">--}}
+{{--                    <label--}}
+{{--                        for="category_id"--}}
+{{--                        class="inline-block text-lg mb-2"--}}
+{{--                    >--}}
+{{--                        category_id--}}
+{{--                    </label>--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        class="border border-gray-200 rounded p-2 w-full"--}}
+{{--                        name="category_id"--}}
+{{--                        value="{{$product->category_id}} "                   />--}}
+
+{{--                    @error('category_id')--}}
+{{--                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+
+{{--                <div class="mb-6">--}}
+{{--                    <label for="color" class="inline-block text-lg mb-2">--}}
+{{--                        color                    </label>--}}
+{{--                    <input--}}
+{{--                        type="text"--}}
+{{--                        class="border border-gray-200 rounded p-2 w-full"--}}
+{{--                        name="color"--}}
+{{--                        placeholder="Pvz: ..."--}}
+{{--                        value="{{$product->color}}"                    />--}}
+
+{{--                    @error('color')--}}
+{{--                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+
+{{--                <div class="mb-6">--}}
+{{--                    <label for="size" class="inline-block text-lg mb-2">--}}
+{{--                        size                    </label>--}}
+{{--                    <input--}}
+{{--                        name="size"--}}
+{{--                        type="text"--}}
+{{--                        class="border border-gray-200 rounded p-2 w-full"--}}
+{{--                        value="{{$product->size}}"                    />--}}
+
+{{--                    @error('size')--}}
+{{--                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
+{{--                    @enderror--}}
+{{--                </div>--}}
+
+{{--        <div class="mb-6">--}}
+{{--            <label--}}
+{{--                for="price"--}}
+{{--                class="inline-block text-lg mb-2"--}}
+{{--            >--}}
+{{--                price--}}
+{{--            </label>--}}
+{{--            <input--}}
+{{--                type="text"--}}
+{{--                class="border border-gray-200 rounded p-2 w-full"--}}
+{{--                name="price"--}}
+{{--                value="{{$product->price}}"                    />--}}
+
+{{--            @error('price')--}}
+{{--            <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
+{{--            @enderror--}}
+{{--        </div>--}}
+
+{{--        <div class="mb-6">--}}
+{{--            <label for="status_id" class="inline-block text-lg mb-2">--}}
+{{--                status_id--}}
+{{--            </label>--}}
+{{--            <input--}}
+{{--                type="text"--}}
+{{--                class="border border-gray-200 rounded p-2 w-full"--}}
+{{--                name="status_id"--}}
+{{--                value="{{$product->status_id}}"                    />--}}
+
+{{--            @error('status_id')--}}
+{{--            <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
+{{--            @enderror--}}
+{{--        </div>--}}
+        <x-forms.inputs :model="$product ?? (new \App\Models\Product())"
+                        fields="name,slug,description,image,category_id,color,size,price,status_id"/>
                 <div class="mb-6">
-                    <label
-                        for="name"
-                        class="inline-block text-lg mb-2">
-                        Produkto pavadinimas
-                    </label>
-                    <input
-                        type="text"
-                        class="border border-gray-200 rounded p-2 w-full"
-                        name="name"
-                        value="{{$product->name}}"
-                    />
-
-                    @error('name')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-6">
-                    <label for="title" class="inline-block text-lg mb-2"
-                    >Slug </label
-                    >
-                    <input
-                        type="text"
-                        class="border border-gray-200 rounded p-2 w-full"
-                        name="slug"
-                        placeholder="Pvz: ...."
-                        value="{{$product->slug}}"
-                    />
-
-                    @error('slug')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-6">
-                    <label
-                        for="description"
-                        class="inline-block text-lg mb-2"
-                    >Aprasymas</label
-                    >
-                    <input
-                        type="text"
-                        class="border border-gray-200 rounded p-2 w-full"
-                        name="description"
-                        placeholder="Pvz: ....."
-                        value="{{$product->description}}"                    />
-
-                    @error('description')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-6">
-                    <label for="image" class="inline-block text-lg mb-2"
-                    >Paveiksliukas</label
-                    >
-                    <input
-                        type="text"
-                        class="border border-gray-200 rounded p-2 w-full"
-                        name="image"
-                        value="{{$product->image}}"                    />
-
-                    @error('image')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-6">
-                    <label
-                        for="category_id"
-                        class="inline-block text-lg mb-2"
-                    >
-                        category_id
-                    </label>
-                    <input
-                        type="text"
-                        class="border border-gray-200 rounded p-2 w-full"
-                        name="category_id"
-                        value="{{$product->category_id}} "                   />
-
-                    @error('category_id')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-6">
-                    <label for="color" class="inline-block text-lg mb-2">
-                        color                    </label>
-                    <input
-                        type="text"
-                        class="border border-gray-200 rounded p-2 w-full"
-                        name="color"
-                        placeholder="Pvz: ..."
-                        value="{{$product->color}}"                    />
-
-                    @error('color')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-6">
-                    <label for="size" class="inline-block text-lg mb-2">
-                        size                    </label>
-                    <input
-                        name="size"
-                        type="text"
-                        class="border border-gray-200 rounded p-2 w-full"
-                        value="{{$product->size}}"                    />
-
-                    @error('size')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
-
-        <div class="mb-6">
-            <label
-                for="price"
-                class="inline-block text-lg mb-2"
-            >
-                price
-            </label>
-            <input
-                type="text"
-                class="border border-gray-200 rounded p-2 w-full"
-                name="price"
-                value="{{$product->price}}"                    />
-
-            @error('price')
-            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-            @enderror
-        </div>
-
-        <div class="mb-6">
-            <label for="status_id" class="inline-block text-lg mb-2">
-                status_id
-            </label>
-            <input
-                type="text"
-                class="border border-gray-200 rounded p-2 w-full"
-                name="status_id"
-                value="{{$product->status_id}}"                    />
-
-            @error('status_id')
-            <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-            @enderror
-        </div>
-
-                <div class="mb-6">
-
                     <button
                         type="submit"
                         class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
