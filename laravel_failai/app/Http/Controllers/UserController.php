@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $users = User::query()->get();
 
-        return view('users.index', compact('users'));
+        return view('users.index', ['users' => User::orderBy("id")->paginate(5)]);
     }
 
     public function create()

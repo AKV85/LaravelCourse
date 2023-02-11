@@ -15,7 +15,8 @@ class StatusController extends Controller
     {
         $statuses = Status::query()->get();
 
-        return view('statuses.index', compact('statuses'));    }
+        return view('statuses.index', ['statuses' => Status::orderBy("id")->paginate(5)]);
+    }
 
     public function create()
     {

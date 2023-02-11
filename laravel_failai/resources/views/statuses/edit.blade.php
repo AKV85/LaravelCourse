@@ -7,40 +7,9 @@
         <form action="{{route('statuses.update', $status->id)}}" method="post">
             @method('PUT')
             @csrf
-            <div class="mb-6">
-                <label
-                    for="name"
-                    class="inline-block text-lg mb-2">
-                    statuso pavadinimas
-                </label>
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="name"
-                    value="{{$status->name}}"
-                />
 
-                @error('name')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
-            </div>
-
-            <div class="mb-6">
-                <label for="type" class="inline-block text-lg mb-2">
-                    type
-                </label>
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="type"
-                    placeholder="Pvz: ...."
-                    value="{{$status->type}}"
-                />
-
-                @error('type')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
-            </div>
+            <x-forms.inputs :model="$status ?? (new \App\Models\Status())"
+                            fields="name,type"/>
 
             <div class="mb-6">
 

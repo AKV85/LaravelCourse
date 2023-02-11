@@ -47,23 +47,13 @@
                     <td><h3 class="text-2xl">
                             {{$payment->amount}}
                         </h3></td>
-                    <td class="text-right">
-                        <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                            <a href="{{route('payments.edit', $payment->id)}}"
-                               class="btn btn-primary">Redaguoti
-                            </a>
-                        </button>
-                        <form action="{{route('payments.destroy', $payment->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button
-                                type="submit"
-                                class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
-                            > Pašalinti
-                            </button>
 
-                        </form>
+                    <td class="text-right">
+                        <div class="card-action">
+                            <x-forms.buttons.action :model="$payment" mainRoute="payments" :showBack="false" />
+                        </div>
                     </td>
+
 
                 </tr>
             @endforeach
@@ -71,4 +61,7 @@
         </table>
         <hr>
     </x-card>
+    <div class="mt-6 p-4" >
+        {{$payments->links()}}
+    </div>
 </x-layout>

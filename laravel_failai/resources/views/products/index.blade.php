@@ -47,22 +47,11 @@
                     <td><h3 class="text-2xl">
                             {{$product->price}} $
                         </h3></td>
-                    <td class="text-right">
-                        <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                            <a href="{{route('products.edit', $product->id)}}"
-                               class="btn btn-primary">Redaguoti
-                            </a>
-                        </button>
-                        <form action="{{route('products.destroy', $product->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button
-                                type="submit"
-                                class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
-                            > Pašalinti
-                            </button>
 
-                        </form>
+                    <td class="text-right">
+                        <div class="card-action">
+                            <x-forms.buttons.action :model="$product" mainRoute="products" :showBack="false" />
+                        </div>
                     </td>
 
                 </tr>
@@ -71,4 +60,7 @@
         </table>
         <hr>
     </x-card>
+    <div class="mt-6 p-4" >
+        {{$products->links()}}
+    </div>
 </x-layout>

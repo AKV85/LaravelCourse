@@ -47,22 +47,11 @@
                     <td><h3 class="text-2xl">
                             {{$category->status_id}}
                         </h3></td>
-                    <td class="text-right">
-                        <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                            <a href="{{route('categories.edit', $category->id)}}"
-                               class="btn btn-primary">Redaguoti
-                            </a>
-                        </button>
-                        <form action="{{route('categories.destroy', $category->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button
-                                type="submit"
-                                class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
-                            > Pašalinti
-                            </button>
 
-                        </form>
+                    <td class="text-right">
+                        <div class="card-action">
+                            <x-forms.buttons.action :model="$category" mainRoute="categories" :showBack="false" />
+                        </div>
                     </td>
 
                 </tr>

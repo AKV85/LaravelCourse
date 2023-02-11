@@ -17,7 +17,7 @@ class ProductsController extends Controller
     {
         $products = Product::query()->with(['category', 'status'])->get();
 
-        return view('products.index', compact('products'));
+        return view('products.index',['products'=>Product::orderBy("id")->paginate(5)]);
     }
 
     public function create()

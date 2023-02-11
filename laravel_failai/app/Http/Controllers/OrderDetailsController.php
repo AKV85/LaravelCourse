@@ -18,7 +18,7 @@ class OrderDetailsController extends Controller
     {
         $ordersDetails = OrderDetails::query()->with(['order', 'product', 'status'])->get();
 
-        return view('ordersDetails.index', compact('ordersDetails'));
+        return view('ordersDetails.index',['ordersDetails'=>OrderDetails::orderBy("id")->paginate(6)]);
     }
 
     public function create()

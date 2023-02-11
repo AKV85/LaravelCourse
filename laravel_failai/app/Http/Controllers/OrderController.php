@@ -16,7 +16,7 @@ class OrderController extends Controller
     {
         $orders = Order::query()->with(['user','shippingAddress',
             'billingAddress','payment','status'])->get();
-        return view('orders.index',compact('orders'));
+        return view('orders.index',['orders'=>Order::orderBy("id")->paginate(6)]);
     }
     public function create()
     {

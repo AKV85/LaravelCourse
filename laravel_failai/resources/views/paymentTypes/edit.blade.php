@@ -8,23 +8,8 @@
         @method('PUT')
 
                 @csrf
-                <div class="mb-6">
-                    <label
-                        for="name"
-                        class="inline-block text-lg mb-2">
-                        Produkto pavadinimas
-                    </label>
-                    <input
-                        type="text"
-                        class="border border-gray-200 rounded p-2 w-full"
-                        name="name"
-                        value="{{$paymentType->name}}"
-                    />
-
-                    @error('name')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
-                </div>
+        <x-forms.inputs :model="$paymentType ?? (new \App\Models\PaymentType())"
+                        fields="name"/>
 
                 <div class="mb-6">
 

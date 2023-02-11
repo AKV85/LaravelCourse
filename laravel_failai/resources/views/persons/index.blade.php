@@ -59,4 +59,7 @@
         </table>
         <hr>
     </x-card>
+    <div class="mt-6 p-4" >
+        {{$persons->links()}}
+    </div>
 </x-layout>

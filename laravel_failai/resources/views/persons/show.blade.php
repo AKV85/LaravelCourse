@@ -18,12 +18,13 @@
                 <p>Creation date: {{ $person->created_at }}</p>
                 <p>Last updated: {{ $person->updated_at }}</p>
             </div>
+
             <div class="card-action">
                 <nav class="flex justify-between items-center mb-4">
                     <x-forms.buttons.action :model="$person" mainRoute="persons" :showBack="true" />
-
                 </nav>
             </div>
+
         </div>
 
     </x-card>

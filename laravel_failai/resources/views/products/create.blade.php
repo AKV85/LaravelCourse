@@ -180,7 +180,7 @@
             {{--                <p class="text-red-500 text-xs mt-1">{{$message}}</p>--}}
             {{--                @enderror--}}
             {{--            </div>--}}
-            <x-forms.inputs :model="$product ?? (new \App\Models\Product())"
+            <x-forms.inputs :model="$product ?? (new Product())"
                             fields="name,slug,description,image,category_id,color,size,price,status_id"/>
 
             <div class="mb-6">

@@ -8,58 +8,9 @@
         <form action="{{route('payments.store')}}" method="post">
 
             @csrf
-            <div class="mb-6">
-                <label
-                    for="order_id"
-                    class="inline-block text-lg mb-2">
-                    order_id
-                </label>
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="order_id"
-                    value="{{old('order_id')}}"
-                />
 
-                @error('order_id')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
-            </div>
-
-            <div class="mb-6">
-                <label for="payment_type_id" class="inline-block text-lg mb-2">
-                    payment_type_id
-                </label>
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="payment_type_id"
-                    placeholder="Pvz: ...."
-                    value="{{old('payment_type_id')}}"
-                />
-
-                @error('payment_type_id')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
-            </div>
-
-            <div class="mb-6">
-                <label
-                    for="amount"
-                    class="inline-block text-lg mb-2"
-                >amount</label
-                >
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="amount"
-                    placeholder="Pvz: ....."
-                    value="{{old('amount')}}"                    />
-
-                @error('amount')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
-            </div>
+            <x-forms.inputs :model="$payment ?? (new \App\Models\Payment())"
+                            fields="order_id, payment_type, amount, status_id"/>
 
             <div class="mb-6">
                 <label for="status_id" class="inline-block text-lg mb-2">

@@ -12,35 +12,14 @@
                 <p>Creation date: {{ $status->created_at }}</p>
                 <p>Last updated: {{ $status->updated_at }}</p>
             </div>
+
             <div class="card-action">
                 <nav class="flex justify-between items-center mb-4">
-                    <a href="/statuses" class="text-black ml-4"> Atgal </a>
-
-                    <ul class="flex space-x-6 mr-6 text-lg">
-                        <li>
-                            <button
-                                class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                                <a href="{{route('statuses.edit', $status->id)}}"
-                                   class="btn btn-primary"> Redaguoti
-                                </a>
-                            </button>
-                        </li>
-                        <li>
-                            <form action="{{route('statuses.destroy', $status->id)}}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button
-                                    type="submit"
-                                    class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
-                                > Pasalinti
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
+                    <x-forms.buttons.action :model="$status" mainRoute="statuses" :showBack="true" />
                 </nav>
             </div>
-        </div>
 
+        </div>
     </x-card>
 </x-layout>
 

@@ -18,9 +18,8 @@ class PersonController extends Controller
     public function index()
     {
         $persons = Person::query()->with(['user', 'address'])->get();
+        return view('persons.index',['persons'=>Person::orderBy("id")->paginate(6)]);
 
-        return view('persons.index',
-            compact('persons'));
     }
     public function create()
     {

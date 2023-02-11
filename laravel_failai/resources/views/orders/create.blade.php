@@ -6,96 +6,10 @@
         <span>Sukurimo forma</span>
         <hr>
         <form action="{{route('orders.store')}}" method="post">
-
             @csrf
-            <div class="mb-6">
-                <label
-                    for="user_id"
-                    class="inline-block text-lg mb-2">
-                    user_id
-                </label>
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="user_id"
-                    value="{{old('user_id'}}"
-                />
 
-                @error('user_id')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
-            </div>
-
-            <div class="mb-6">
-                <label for="shipping_address" class="inline-block text-lg mb-2"
-                >shipping_address
-                </label
-                >
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="shipping_address"
-                    placeholder="Pvz: ...."
-                    value="{{old('shipping_address'}}"
-                />
-
-                @error('shipping_address')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
-            </div>
-
-            <div class="mb-6">
-                <label
-                    for="billing_address"
-                    class="inline-block text-lg mb-2"
-                >billing_address</label
-                >
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="billing_address"
-                    placeholder="Pvz: ....."
-                    value="{{old('billing_address'}}"                    />
-
-                @error('billing_address')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
-            </div>
-
-            <div class="mb-6">
-                <label for="payment_id" class="inline-block text-lg mb-2"
-                >payment_id</label
-                >
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="payment_id"
-                    value="{{old('payment_id'}}"                    />
-
-                @error('payment_id')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
-            </div>
-
-            <div class="mb-6">
-                <label
-                    for="status_id"
-                    class="inline-block text-lg mb-2"
-                >
-                    status_id
-                </label>
-                <input
-                    type="text"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="status_id"
-                    value="{{old('status_id'}} "                   />
-
-                @error('status_id')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
-            </div>
-
-
+            <x-forms.inputs :model="$order ?? (new \App\Models\Order())"
+                            fields="user_id, shipping_address_id, billing_address_id, payment_id, status_id"/>
 
             <div class="mb-6">
 

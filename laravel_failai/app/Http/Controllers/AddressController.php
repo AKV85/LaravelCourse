@@ -17,7 +17,7 @@ class AddressController extends Controller
     public function index()
     {
         $addresses = Address::query()->with(['user'])->get();
-        return view('addresses.index', compact('addresses'));
+        return view('addresses.index',['addresses'=>Address::orderBy("id")->paginate(6)]);
     }
     public function create()
     {

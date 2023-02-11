@@ -16,7 +16,7 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = Payment::query()->with(['order','paymentType','status'])->get();
-        return view('payments.index', compact('payments'));
+        return view('payments.index',['payments'=>Payment::orderBy("id")->paginate(6)]);
     }
     public function create()
     {

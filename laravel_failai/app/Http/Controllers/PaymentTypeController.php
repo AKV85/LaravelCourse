@@ -15,7 +15,7 @@ class PaymentTypeController extends Controller
     public function index()
     {
         $paymentTypes = PaymentType::query()->get();
-        return view('paymentTypes.index', compact('paymentTypes'));
+        return view('paymentTypes.index',['paymentTypes'=>PaymentType::orderBy("id")->paginate(6)]);
 
     }
 

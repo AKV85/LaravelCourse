@@ -47,23 +47,13 @@
                     <td><h3 class="text-2xl">
                             {{$user->password}}
                         </h3></td>
-                    <td class="text-right">
-                        <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                            <a href="{{route('users.edit', $user->id)}}"
-                               class="btn btn-primary">Redaguoti
-                            </a>
-                        </button>
-                        <form action="{{route('users.destroy', $user->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button
-                                type="submit"
-                                class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
-                            > Pašalinti
-                            </button>
 
-                        </form>
+                    <td class="text-right">
+                        <div class="card-action">
+                            <x-forms.buttons.action :model="$user" mainRoute="users" :showBack="false" />
+                        </div>
                     </td>
+
 
                 </tr>
             @endforeach
@@ -71,4 +61,7 @@
         </table>
         <hr>
     </x-card>
+    <div class="mt-6 p-4" >
+        {{$users->links()}}
+    </div>
 </x-layout>
