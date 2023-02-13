@@ -35,7 +35,7 @@
                              src="https://picsum.photos/50"
                              alt="image"/></td>
                     <td><h3 class="text-2xl">
-                            <a href="/categories/{{$category->id}}">
+                            <a href="categories/{{$category->id}}">
                                 {{$category->name}}</a>
                         </h3>
                     </td>
