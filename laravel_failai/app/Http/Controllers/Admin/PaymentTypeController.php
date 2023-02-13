@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PaymentTypeRequest;
 use App\Managers\PaymentTypeManager;
 use App\Models\PaymentType;
-use Illuminate\Http\Request;
 
 class PaymentTypeController extends Controller
 {

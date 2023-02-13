@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Managers\StatusManager;
 use App\Models\Status;
 use Illuminate\Http\Request;

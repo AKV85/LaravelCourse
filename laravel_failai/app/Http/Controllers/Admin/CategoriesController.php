@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Managers\CategoryManager;
 use App\Models\Category;
-use App\Http\Requests\CategoryRequest;
-use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {

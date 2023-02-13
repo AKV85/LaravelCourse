@@ -47,6 +47,7 @@
                     <td><h3 class="text-2xl">
                             {{$person->user->name}}
                         </h3></td>
+
                     <td class="text-right">
                         <div class="card-action">
                        <x-forms.buttons.action :model="$person" mainRoute="persons" :showBack="false" />
@@ -58,6 +59,7 @@
             </tbody>
         </table>
         <hr>
+
     </x-card>
     <div class="mt-6 p-4" >
         {{$persons->links()}}

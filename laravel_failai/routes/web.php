@@ -1,24 +1,19 @@
 <?php
 
-use App\Http\Controllers\AddressController;
-use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\Admin\AddressController;
+use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\OrderDetailsController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\PaymentTypeController;
+use App\Http\Controllers\Admin\PersonController;
+use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\StatusController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderDetailsController;
-use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\PaymentTypeController;
-use App\Http\Controllers\PersonController;
-use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\StatusController;
-use App\Http\Controllers\UserController;
-use App\Models\Address;
-use App\Models\Category;
-use App\Models\Order;
-use App\Models\OrderDetails;
-use App\Models\Payment;
-use App\Models\Person;
-use App\Models\Product;
-use Illuminate\Http\Client\Request;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +28,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', HomeController::class);
-
+Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
 //Route::get('/', function () {
 //    return view('welcome');
 //});
@@ -62,20 +58,22 @@ Route::get('/', HomeController::class);
 //Route::delete('/product/{product}', [ProductsController::class, 'destroy']);
 
 //Laravel variantas controlleriu naudojimo
-Route::resources([
-    'addresses'=>AddressController::class,
-    'categories'=>CategoriesController::class,
-    'orders'=>OrderController::class,
-    'paymentTypes'=>PaymentTypeController::class,
-    'payments'=>PaymentController::class,
-    'persons'=>PersonController::class,
-    'products'=>ProductsController::class,
-    'statuses'=>StatusController::class,
-    'users'=>UserController::class,
-    'ordersDetails'=>OrderDetailsController::class,
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', DashBoardController::class)->name('admin.dashboard');
+    Route::resources([
+        'addresses' => AddressController::class,
+        'categories' => CategoriesController::class,
+        'orders' => OrderController::class,
+        'paymentTypes' => PaymentTypeController::class,
+        'payments' => PaymentController::class,
+        'persons' => PersonController::class,
+        'products' => ProductsController::class,
+        'statuses' => StatusController::class,
+        'users' => UserController::class,
+        'ordersDetails' => OrderDetailsController::class,
 
-]);
-
+    ]);
+});
 //Route::get('/addresses', function () {
 //    return Address::query()->with(['user'])->get();
 //});

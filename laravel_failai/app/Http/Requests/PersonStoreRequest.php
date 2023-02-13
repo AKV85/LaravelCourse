@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\Rules\FirstUppercaseRule;
 use App\Rules\PersonalCodeRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class PersonStoreRequest extends FormRequest
 {
@@ -14,7 +13,7 @@ class PersonStoreRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -24,7 +23,7 @@ class PersonStoreRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:255', new FirstUppercaseRule()],
@@ -40,7 +39,7 @@ class PersonStoreRequest extends FormRequest
      *
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
         ];
