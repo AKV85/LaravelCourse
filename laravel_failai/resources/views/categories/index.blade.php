@@ -17,11 +17,11 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Image</th>
-                <th>Kategorijos pavadinimas</th>
-                <th>Slug</th>
-                <th>Status ID</th>
-                <th>Veiksmai</th>
+                <th>{{__('categories.image')}}</th>
+                <th>{{__('categories.name')}}</th>
+                <th>{{__('categories.slug')}}</th>
+                <th>{{__('categories.status')}}</th>
+                <th>{{__('general.actions')}}</th>
             </tr>
             </thead>
             <tbody>

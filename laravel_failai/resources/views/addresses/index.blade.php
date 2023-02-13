@@ -17,11 +17,11 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Paveiksliukas</th>
-                <th>Salis</th>
-                <th>Miestas</th>
-                <th>Gatve</th>
-                <th>Veiksmai</th>
+                <th>{{__('address.image')}}</th>
+                <th>{{__('address.country')}}</th>
+                <th>{{__('address.city')}}</th>
+                <th>{{__('address.street')}}</th>
+                <th>{{__('general.actions')}}</th>
             </tr>
             </thead>
             <tbody>

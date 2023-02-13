@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserRegController;
+use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,54 +28,51 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => SetLocale::class], function () {
+    Route::get('/', HomeController::class);
+    Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
+    Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
 
-Route::get('/', HomeController::class);
-Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
-Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('/', DashBoardController::class)->name('admin.dashboard');
+        Route::resources([
+            'addresses' => AddressController::class,
+            'categories' => CategoriesController::class,
+            'orders' => OrderController::class,
+            'paymentTypes' => PaymentTypeController::class,
+            'payments' => PaymentController::class,
+            'persons' => PersonController::class,
+            'products' => ProductsController::class,
+            'statuses' => StatusController::class,
+            'users' => UserController::class,
+            'ordersDetails' => OrderDetailsController::class,
 
-
-//Route::get('/product/new', function () {
-//
-//    $forma = '
-//        <form action="/product" method="POST">
-//            <input type="text" name="inputas1">
-//            <input type="text" name="inputas2">
-//            <input type="submit" value="SEND">
-//        </form>
-//    ';
-//
-//    return $forma;
-//});
-
-//php variantas kontrolieriu kurimo arba kai reikia naudoti skirtingus vardus
-//Route::get('/products', [ProductsController::class, 'index']);
-//Route::get('/product/create', [ProductsController::class, 'create']);
-//Route::post('/product', [ProductsController::class, 'store']);
-//Route::get('/product/{product}', [ProductsController::class, 'show']);
-//Route::get('/product/edit', [ProductsController::class, 'edit']);
-//Route::put('/product/{product}', [ProductsController::class, 'update']);
-//Route::delete('/product/{product}', [ProductsController::class, 'destroy']);
-
-//Laravel variantas controlleriu naudojimo
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', DashBoardController::class)->name('admin.dashboard');
-    Route::resources([
-        'addresses' => AddressController::class,
-        'categories' => CategoriesController::class,
-        'orders' => OrderController::class,
-        'paymentTypes' => PaymentTypeController::class,
-        'payments' => PaymentController::class,
-        'persons' => PersonController::class,
-        'products' => ProductsController::class,
-        'statuses' => StatusController::class,
-        'users' => UserController::class,
-        'ordersDetails' => OrderDetailsController::class,
-
-    ]);
+        ]);
+    });
 });
+
+//Route::get('/register',
+//    [UserRegController::class,'create']);
+////    ->middleware('quest');
+//
+////create new user
+//Route::post('/users',
+//    [UserRegController::class,'store']);
+//
+////log user out
+//Route::post('/logout',
+//    [UserRegController::class,'logout'])->middleware('auth');
+//
+////show login form
+//Route::get('/login',
+//    [UserRegController::class,'login'])->name('login');
+////    ->middleware('quest');
+//
+////login user
+//Route::post('/users/authenticate',
+//    [UserRegController::class,'authenticate']);
+
+
 //Route::get('/addresses', function () {
 //    return Address::query()->with(['user'])->get();
 //});
@@ -135,3 +134,31 @@ Route::group(['prefix' => 'admin'], function () {
 //Route::get('/order/{order}', function (Order $order) {
 //    return $order->products;
 //});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+//Route::get('/product/new', function () {
+//
+//    $forma = '
+//        <form action="/product" method="POST">
+//            <input type="text" name="inputas1">
+//            <input type="text" name="inputas2">
+//            <input type="submit" value="SEND">
+//        </form>
+//    ';
+//
+//    return $forma;
+//});
+
+//php variantas kontrolieriu kurimo arba kai reikia naudoti skirtingus vardus
+//Route::get('/products', [ProductsController::class, 'index']);
+//Route::get('/product/create', [ProductsController::class, 'create']);
+//Route::post('/product', [ProductsController::class, 'store']);
+//Route::get('/product/{product}', [ProductsController::class, 'show']);
+//Route::get('/product/edit', [ProductsController::class, 'edit']);
+//Route::put('/product/{product}', [ProductsController::class, 'update']);
+//Route::delete('/product/{product}', [ProductsController::class, 'destroy']);
+
+//Laravel variantas controlleriu naudojimo

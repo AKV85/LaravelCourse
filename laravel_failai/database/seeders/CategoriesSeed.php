@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Status;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class CategoriesSeed extends Seeder
 {
@@ -14,7 +13,7 @@ class CategoriesSeed extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $categories = [
             [
@@ -95,7 +94,7 @@ class CategoriesSeed extends Seeder
                 [
                     'description' => $cat['description'],
                     'image' => $cat['image'],
-                    'status_id' => Status::where(['name' => 'Aktyvus', 'type'=>'product'])->first()->id,
+                    'status_id' => Status::where(['name' => 'active', 'type'=>'product'])->first()->id,
                     'parent_id' => null,
                 ]
             );

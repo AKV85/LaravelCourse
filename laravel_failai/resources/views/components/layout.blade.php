@@ -40,28 +40,37 @@
     <ul class="flex space-x-6 mr-6 text-lg">
         <li>
             <a href="{{route('addresses.index')}}" class="hover:text-laravel">
-                Adresai
+                {{__('general.meniu.addresses')}}
             </a>
         </li>
         <li>
             <a href="{{route('categories.index')}}" class="hover:text-laravel">
-                Kategorijos
-            </a>
-        </li>
-        <li>
-            <a href="{{route('orders.index')}}" class="hover:text-laravel">
-                Uzsakymai
+                {{__('general.meniu.categories')}}
+        </a>
+    </li>
+    <li>
+        <a href="{{route('orders.index')}}" class="hover:text-laravel">
+            {{__('general.meniu.orders')}}
             </a>
         </li>
         <li>
             <a href="{{route('persons.index')}}" class="hover:text-laravel">
-                Asmenys
+                {{__('general.meniu.persons')}}
             </a>
         </li>
         <li>
             <a href="{{route('products.index')}}" class="hover:text-laravel">
-                Produktai
+                {{__('general.meniu.products')}}
             </a>
+        </li>
+        <li>
+            <div>
+                @if(app()->getLocale() == 'en')
+                    <a href="{{url()->current()}}?lang=lt">LT</a>
+                @else
+                    <a href="{{url()->current()}}?lang=en">EN</a>
+                @endif
+            </div>
         </li>
     </ul>
 </nav>
