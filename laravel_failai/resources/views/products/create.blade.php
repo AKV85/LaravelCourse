@@ -6,7 +6,9 @@
         <hr>
         <span>Sukurimo forma</span>
         <hr>
-        <form action="{{route('products.store')}}" method="post">
+        <form action="{{route('products.store')}}"
+              method="post"
+              enctype="multipart/form-data">
 
             {{--        @csrf--}}
             {{--        <input type="text" name="name" placeholder="Name" value=""><br>--}}
@@ -182,6 +184,7 @@
             {{--            </div>--}}
             <x-forms.inputs :model="$product ?? (new Product())"
                             fields="name,slug,description,image,category_id,color,size,price,status_id"/>
+            <input type="file" name="image"><br>
 
             <div class="mb-6">
 

@@ -17,7 +17,7 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>{{__('address.image')}}</th>
+                <th>{{__('address.name')}}</th>
                 <th>{{__('address.country')}}</th>
                 <th>{{__('address.city')}}</th>
                 <th>{{__('address.street')}}</th>
@@ -28,14 +28,18 @@
             @foreach($addresses as $address)
 
                 <tr>
-                    <td><h3 class="text-2xl">
+                    <td>
+                        <h3 class="text-2xl">
                             {{$address->id}}
-                        </h3></td>
-                    <td><img class="hidden w-48 mr-6 md:block"
-                             src="https://picsum.photos/50"
-                             alt="image"/></td>
+                        </h3>
+                    </td>
+                    <td>
+                        <h3 class="text-2xl">
+                            {{$address->name}}
+                        </h3>
+                    </td>
                     <td><h3 class="text-2xl">
-                            <a href="/addresses/{{$address->id}}">
+                            <a href="addresses/{{$address->id}}">
                                 {{$address->country}}</a>
                         </h3>
                     </td>
@@ -44,13 +48,15 @@
                             {{$address->city}}
                         </div>
                     </td>
-                    <td><h3 class="text-2xl">
+                    <td>
+                        <h3 class="text-2xl">
                             {{$address->street}}
-                        </h3></td>
+                        </h3>
+                    </td>
 
                     <td class="text-right">
                         <div class="card-action">
-                            <x-forms.buttons.action :model="$address" mainRoute="addresses" :showBack="false" />
+                            <x-forms.buttons.action :model="$address" mainRoute="addresses" :showBack="false"/>
                         </div>
                     </td>
 
@@ -60,7 +66,7 @@
         </table>
         <hr>
     </x-card>
-    <div class="mt-6 p-4" >
+    <div class="mt-6 p-4">
         {{$addresses->links()}}
     </div>
 </x-layout>

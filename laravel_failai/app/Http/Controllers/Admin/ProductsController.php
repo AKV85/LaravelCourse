@@ -28,6 +28,19 @@ class ProductsController extends Controller
     public function store(ProductRequest $request)
     {
         $product = Product::create($request->all());
+
+        // Tikriname, ar užklausa turi failą ir ar jis yra validus paveikslėlio failas
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Įkeliame failą į'public_html/img/products' aplanką
+            $image = $request->file('image');
+            //gauname pav.pavadinima
+            $clientOriginalName = $image->getClientOriginalName();
+            //atlieka pav.perkelima i public image/products kataloga
+            $image->move(public_path('img/products'), $clientOriginalName);
+            //suta kodo dalis atsakinga uz paveikslelio issaugojima produkto lenteleje
+            $product->image = '/img/products/'. $clientOriginalName;
+            $product->save();}
+
         return redirect()->route('products.show', $product);
     }
 
@@ -45,6 +58,18 @@ class ProductsController extends Controller
     {
 
         $product->update($request->all());
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Įkeliame failą į'public_html/img/products' aplanką
+            $image = $request->file('image');
+            //gauname pav.pavadinima
+            $clientOriginalName = $image->getClientOriginalName();
+            //atlieka pav.perkelima i public image/products kataloga
+            $image->move(public_path('img/products'), $clientOriginalName);
+            //suta kodo dalis atsakinga uz paveikslelio issaugojima produkto lenteleje
+            $product->image = '/img/products/'. $clientOriginalName;
+            $product->save();}
+
         return redirect()->route('products.show', $product);
     }
 

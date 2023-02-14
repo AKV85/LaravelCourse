@@ -4,7 +4,8 @@
         <h1>Atnaujinti {{$address->name}}</h1><br><hr>
 
         <span>Redagavimo forma</span><hr>
-        <form action="{{route('addresses.update', $address->id)}}" method="post">
+        <form action="{{route('addresses.update', $address->id)}}"
+              method="post">
             @method('PUT')
             @csrf
 

@@ -3,7 +3,7 @@
     <x-card class="p-10 max-w-lg mx-auto mt-24">
                 <div class="card">
                     <div class="card-image">
-                        <img src="https://picsum.photos/300" alt="img">
+                        <img src="{{$product->image}}" alt="img">
                         <span class="card-title">{{ $product->name }}</span>
                     </div>
                     <div class="card-content">

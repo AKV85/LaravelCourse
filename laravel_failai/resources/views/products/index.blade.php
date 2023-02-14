@@ -32,7 +32,7 @@
                             {{$product->id}}
                         </h3></td>
                     <td><img class="hidden w-48 mr-6 md:block"
-                             src="https://picsum.photos/50"
+                             src="{{$product->image}}"
                              alt="image"/></td>
                     <td><h3 class="text-2xl">
                             <a href="/products/{{$product->id}}">
