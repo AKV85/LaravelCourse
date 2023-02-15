@@ -2,17 +2,18 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProductRequest extends FormRequest
+class ProductRequest extends FormRequest implements ProductRequestInterface
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,7 +23,7 @@ class ProductRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required', 'string', 'min:4', 'max:255'],
@@ -34,7 +35,7 @@ class ProductRequest extends FormRequest
             'slug' => ['required', 'string', 'min:3', 'max:255'],
 
             'description' => ['nullable', 'string', 'min:3'],
-            'image' => ['nullable'],
+            'image' => ['nullable', 'file', 'max:1024'],
             'color' => ['nullable', Rule::in(['Red','red','Green','Blue','Black','White'])],
             'size' => ['nullable', Rule::in(['XS','S','M','L','XL'])]
         ];
@@ -45,7 +46,7 @@ class ProductRequest extends FormRequest
      *
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'name.required' => 'Privalomas produkto pavadinimas',

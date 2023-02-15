@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -32,6 +34,9 @@ class Product extends Model
     use HasFactory;
     use SoftDeletes;
 
+//    public const COLORS = ['Red', 'Green', 'Blue', 'Black', 'White'];
+//    public const SIZES  = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+
     protected $fillable = [
         'name',
         'slug',
@@ -52,5 +57,23 @@ class Product extends Model
     public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(File::class, 'model_id', 'id')
+            ->where('model_type', Product::class)
+            ->whereIn('extension', File::TYPES_IMAGE);
+    }
+
+    public function files(): HasMany
+    {
+        return $this->hasMany(File::class, 'model_id', 'id')
+            ->where('model_type', Product::class);
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

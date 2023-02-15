@@ -48,4 +48,5 @@ class AddressController extends Controller
         $address->delete();
         return redirect()->route('addresses.index');
     }
+
 }

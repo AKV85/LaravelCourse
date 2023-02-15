@@ -2,31 +2,44 @@
 
 namespace App\Managers;
 
+use App\Http\Requests\ProductRequestInterface;
+use App\Models\File;
 use App\Models\Product;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class ProductManager
 {
-//    public function createPerson(Request $request): Product
-//    {
-//        DB::beginTransaction();
-//
-//        $user = User::create([
-//            'name' => $request->get('name'),
-//            'email' => $request->get('email'),
-//            'password' => Hash::make(Str::random(8)),   // random password
-//        ]);
-//
-//        $personArray = $request->all() + ['user_id' => $user->id];
-//
-//        $person = Product::create($personArray);
-//
-//        DB::commit();
-//
-//        return $person;
-//    }
+    protected const IMAGE_PATH       = 'img/products';
+    protected const IMAGE_FIELD_NAME = 'image';
+
+    public function __construct(protected FileManager $fileManager,)
+    {
+    }
+
+    public function updateMainImage(Product $product, ProductRequestInterface $request): void
+    {
+        $this->fileManager->removeFile($product->image, $product->id, Product::class);
+        $file = $this->fileManager->storeFile($request, self::IMAGE_FIELD_NAME, self::IMAGE_PATH);
+        $this->fileManager->assignModel($file, $product);
+        $this->assignMainImage($product, $file);
+    }
+
+    public function assignMainImage(Product $product, ?File $file): void
+    {
+        if ($file === null) {
+            return;
+        }
+
+        $product->image   = $file->url;
+        $file->model_id   = $product->id;
+        $file->model_type = Product::class;
+        $file->save();
+        $product->save();
+    }
+
+    public function addImage(Product $product, ProductRequestInterface $request): void
+    {
+        $file = $this->fileManager->storeFile($request, self::IMAGE_FIELD_NAME, self::IMAGE_PATH);
+        $this->fileManager->assignModel($file, $product);
+        $this->assignMainImage($product, $file);
+    }
 }
