@@ -17,7 +17,7 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Image</th>
+                <th>Role</th>
                 <th>Name</th>
                 <th>email</th>
                 <th>password</th>
@@ -30,12 +30,16 @@
                 <tr>
                     <td><h3 class="text-2xl">
                             {{$user->id}}
-                        </h3></td>
-                    <td><img class="hidden w-48 mr-6 md:block"
-                             src="https://picsum.photos/50"
-                             alt="image"/></td>
-                    <td><h3 class="text-2xl">
-                            <a href="/users/{{$user->id}}">
+                        </h3>
+                    </td>
+                    <td class="text-center">
+                        <div class="text-xl font-bold mb-4">
+                            {{$user->role}}
+                        </div>
+                    </td>
+                    <td>
+                        <h3 class="text-2xl">
+                            <a href="users/{{$user->id}}">
                                 {{$user->name}}</a>
                         </h3>
                     </td>

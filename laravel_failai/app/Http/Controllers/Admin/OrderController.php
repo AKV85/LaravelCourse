@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Managers\OrderManager;
 use App\Models\Order;
+use App\Models\Status;
+
 
 class OrderController extends Controller
 {
-    public function __construct(protected OrderManager $manager)
+    public function __construct()
     {
+        $this->authorizeResource(Order::class,'order');
     }
     public function index()
     {

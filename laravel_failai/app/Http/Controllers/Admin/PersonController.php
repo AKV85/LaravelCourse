@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PersonRequest;
 use App\Http\Requests\PersonStoreRequest;
 use App\Http\Requests\PersonUpdateRequest;
 use App\Managers\PersonManager;
@@ -13,6 +12,8 @@ class PersonController extends Controller
 {
     public function __construct(protected PersonManager $manager)
     {
+        $this->authorizeResource(Person::class,'person');
+
     }
 
     public function index()

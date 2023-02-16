@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\OrderDetailsController;
 use App\Http\Controllers\Admin\PaymentTypeController;
 use App\Http\Controllers\Admin\PersonController;
 use App\Http\Controllers\Admin\ProductsController;
@@ -33,6 +34,7 @@ Route::group(['middleware' => SetLocale::class], function () {
             'users'        => UserController::class,
             'persons'      => PersonController::class,
             'paymentTypes' => PaymentTypeController::class,
+            'ordersDetails'=> OrderDetailsController::class,
         ]);
     });
 });

@@ -7,11 +7,12 @@ return [
     'order_edit' => 'Užsakymo redagavimas redagavimas',
     'order_new' => 'Naujas užsakymas',
     'add_new' => 'Pridėti naują užsakymą',
+    'order_id' => 'Užsakymo ID',
+    'product_name' => 'Produkto pavadinimas',
+    'product_id' => 'Produkto ID',
+    'quatity' => 'Kiekis',
+    'price' => 'Kaina',
     'status_id' => 'Statuso ID',
-    'status' => 'Statusas',
-    'user' => 'Vartotojas',
-    'shipping_address' => 'Pristatymo adresas',
-    'billing_address' => 'Korespondencijos adresas',
-    'user_id' => 'Userio ID',
-    'payment_id' => 'Apmokejimo ID'
+    'created_at' => 'Užrašas sukūrtas',
+    'updated_at' => 'Užrašas atnaujintas'
 ];

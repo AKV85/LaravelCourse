@@ -20,6 +20,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string $email
  * @property Carbon $email_verified_at
  * @property string $password
+ * @property string $role
  * @property string $remember_token
  * @property Person $person
  * @property Carbon $created_at
@@ -31,15 +32,33 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     use Notifiable;
 
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_USER = 'user';
+    public const ROLE_MANAGER = 'manager';
+    public const ROLE_PM = 'prod_manager';
+    public const ROLES= [
+        self::ROLE_ADMIN,
+        self::ROLE_USER,
+        self::ROLE_MANAGER,
+        self::ROLE_PM
+    ];
+ //iharrdkinam
+public const ROLE_DEFAULT = self::ROLE_USER;
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+    protected $guarded =[
+        'role'
+        ];
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -85,6 +104,8 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         return $initials;
     }
+
+
 
     public function __toString(): string
     {

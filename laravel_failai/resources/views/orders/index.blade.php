@@ -17,12 +17,11 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>paveiksliukas</th>
-                <th>User ID</th>
-                <th>Shipping_address</th>
-                <th>payment_id</th>
-                <th>status_id</th>
-                <th>Veiksmai</th>
+                <th>{{__('orders.user_id')}}</th>
+                <th>{{__('orders.shipping_address')}}</th>
+                <th>{{__('orders.payment_id')}}</th>
+                <th>{{__('orders.status_id')}}</th>
+                <th>{{__('general.actions')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -32,9 +31,6 @@
                     <td><h3 class="text-2xl">
                             {{$order->id}}
                         </h3></td>
-                    <td><img class="hidden w-48 mr-6 md:block"
-                             src="https://picsum.photos/50"
-                             alt="image"/></td>
                     <td><h3 class="text-2xl">
                             <a href="/orders/{{$order->id}}">
                                 {{$order->user_id}}</a>

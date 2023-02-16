@@ -12,6 +12,7 @@
                 <p>email: {{ $user->email }}</p>
                 <p>email_verified_at: {{ $user->email_verified_at }}</p>
                 <p>password: {{ $user->password }}</p>
+                <p>role: {{ $user->role }}</p>
                 <p>remember_token: {{ $user->remember_token }}</p>
 
                 <p>Creation date: {{ $user->created_at }}</p>

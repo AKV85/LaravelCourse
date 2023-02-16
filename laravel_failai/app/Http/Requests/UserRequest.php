@@ -12,7 +12,7 @@ class UserRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,11 +22,12 @@ class UserRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $this->user->id],
+            'role' => ['required', 'string', Rule::in(['admin', 'user', 'manager', 'prod_manager'])],
 //            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
