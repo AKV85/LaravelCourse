@@ -58,7 +58,6 @@ public const ROLE_DEFAULT = self::ROLE_USER;
         'name',
         'email',
         'password',
-        'role'
     ];
 
     /**

@@ -123,6 +123,7 @@
       <path value="$PROJECT_DIR$/laravel_failai/vendor/symfony/var-dumper" />
       <path value="$PROJECT_DIR$/laravel_failai/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/laravel_failai/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/laravel_failai/vendor/laravel/breeze" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />

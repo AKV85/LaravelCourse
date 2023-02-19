@@ -17,7 +17,7 @@ class OrderPolicy
      * @param \App\Models\User $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): Response|bool
     {
         return true; // iki kol atsiras Roles
     }
@@ -31,7 +31,9 @@ class OrderPolicy
      */
     public function view(User $user, Order $order): Response|bool
     {
-        return $user->id === $order->user_id || $user->role=== User::ROLE_MANAGER || $user->role=== User::ROLE_ADMIN
+        return $user->id === $order->user_id
+        || $user->role === User::ROLE_MANAGER
+        || $user->role === User::ROLE_ADMIN
             ? Response::allow()
             : Response::deny(__('You do not own this order'));
     }
@@ -56,7 +58,7 @@ class OrderPolicy
      */
     public function update(User $user, Order $order)
     {
-        return $user->id === $order->user_id || $user->role=== User::ROLE_MANAGER
+        return $user->id === $order->user_id || $user->role === User::ROLE_MANAGER
             ? Response::allow()
             : Response::deny(__('You do not own this order'));
     }
@@ -84,7 +86,7 @@ class OrderPolicy
      */
     public function restore(User $user, Order $order)
     {
-       return $user->role=== User::ROLE_MANAGER
+        return $user->role === User::ROLE_MANAGER
             ? Response::allow()
             : Response::deny(__('You do not own this order'));
 
@@ -99,7 +101,7 @@ class OrderPolicy
      */
     public function forceDelete(User $user, Order $order)
     {
-        return $user->role=== User::ROLE_ADMIN
+        return $user->role === User::ROLE_ADMIN
             ? Response::allow()
             : Response::deny(__('You do not own this order'));
     }

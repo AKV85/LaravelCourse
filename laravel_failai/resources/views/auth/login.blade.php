@@ -1,3 +1,5 @@
+@include('partials._hero')
+
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -39,7 +41,7 @@
                 </a>
             @endif
 
-            <x-primary-button class="ml-3">
+            <x-primary-button class="ml-3 bg-violet-700">
                 {{ __('Log in') }}
             </x-primary-button>
         </div>

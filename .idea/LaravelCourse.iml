@@ -14,7 +14,6 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/psr/http-message" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/psr/simple-cache" />
-      <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/psy/psysh" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/filp/whoops" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/brick/math" />
@@ -55,7 +54,6 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/sebastian/diff" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/laravel/serializable-closure" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/sebastian/environment" />
-      <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/laravel/tinker" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/sebastian/exporter" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/mockery/mockery" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/sebastian/global-state" />
@@ -114,6 +112,9 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/symfony/var-dumper" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/theseer/tokenizer" />
       <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/laravel/tinker" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/psy/psysh" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_failai/vendor/laravel/breeze" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

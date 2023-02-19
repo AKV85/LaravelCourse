@@ -8,7 +8,9 @@
         <form action="{{route('users.store')}}" method="post">
             @csrf
             <x-forms.inputs :model="$user ?? (new \App\Models\User())"
-                            fields="name,email,password,role"/>
+                            fields="name,email,
+{{--                            password,password_confirmation,--}}
+                            role"/>
 
             <div class="mb-6">
 
