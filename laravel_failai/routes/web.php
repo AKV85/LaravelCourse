@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderSummaryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,10 @@ Route::group(['middleware' => SetLocale::class], function () {
     Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
     Route::post('product/add', [CartController::class, 'create'])->name('product.add_to_cart');
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/remove-product', [CartController::class, 'removeProduct'])->name('product.remove_from_cart');
+    Route::get('/order-summary', [OrderSummaryController::class,'index'])->name('order_summary');
+
+
 
     Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
         Route::get('/', DashBoardController::class)->name('dashboard');
