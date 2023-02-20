@@ -36,24 +36,26 @@ class User extends Authenticatable implements MustVerifyEmail
     public const ROLE_USER = 'user';
     public const ROLE_MANAGER = 'manager';
     public const ROLE_PM = 'prod_manager';
-    public const ROLES= [
+
+    public const ROLES = [
         self::ROLE_ADMIN,
         self::ROLE_USER,
         self::ROLE_MANAGER,
         self::ROLE_PM
     ];
- //iharrdkinam
-public const ROLE_DEFAULT = self::ROLE_USER;
+    //iharrdkinam
+    public const ROLE_DEFAULT = self::ROLE_USER;
 
+
+    protected $guarded = [
+        'role'
+    ];
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $guarded =[
-        'role'
-        ];
     protected $fillable = [
         'name',
         'email',
@@ -84,10 +86,6 @@ public const ROLE_DEFAULT = self::ROLE_USER;
         return $this->hasOne(Person::class);
     }
 
-    public function orders(): HasMany
-    {
-        return $this->hasMany(Order::class);
-    }
 
     public function addresses(): HasMany
     {
@@ -104,7 +102,28 @@ public const ROLE_DEFAULT = self::ROLE_USER;
         return $initials;
     }
 
+    public function getLatestCart(): ?Order
+    {
+        $status = Status::where(['name' => Order::STATUS_NEW, 'type' => 'order'])->first();
 
+        $order = $this->orders()->where('status_id', $status->id)->latest()->first();
+
+        if (!isset($order) || !$order instanceof Order) {
+            $order = new Order();
+            $order->user_id = $this->id;
+            $order->status_id = $status->id;
+            $order->save();
+        }
+
+//        $order = Order::firstOrCreate(['status_id', $status->id, 'user_id' => $this->id]);
+
+        return $order;
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 
     public function __toString(): string
     {

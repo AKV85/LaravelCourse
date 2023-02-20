@@ -29,15 +29,20 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected  $guarded = [
-        'status_id',
+    public const STATUS_NEW = 'new';
+
+    protected $guarded = [
+
         'payment_id',
-        'user_id',
+
     ];
 
     protected $fillable = [
         'shipping_address_id',
         'billing_address_id',
+        'user_id',
+        'status_id',
+
     ];
 
     public function user(): BelongsTo
@@ -80,11 +85,11 @@ class Order extends Model
             'id',
             'product_id'
         );
-
+    }
 //      Alternatyva:
 //
 //        return $this->hasMany(Product::class, 'id', 'product_id')
 //            ->join('order_details', 'products.id', '=', 'order_details.product_id')
 //            ->where('order_details.order_id', $this->id);
-    }
+
 }

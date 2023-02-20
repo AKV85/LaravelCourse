@@ -8,7 +8,8 @@
             @method('PUT')
             @csrf
             <x-forms.inputs :model="$user ?? (new \App\Models\User())"
-                            fields="name,email,role"/>
+                            fields="name,email"/>
+            <x-forms.select field="role" :model="$user" :options="\App\Models\User::ROLES"/>
 
             <div class="mb-6">
 
