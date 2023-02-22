@@ -2,47 +2,82 @@
 
 namespace App\Managers;
 
+use App\Http\Requests\CartRequest;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\User;
+use Exception;
+use Illuminate\Database\Eloquent\Model;
 
 class CartManager
 {
-protected $user;
-protected $cart;
+    public function __construct(
+        protected ProductsManager $productsManager
+    ) {
+    }
 
-public function __construct(User $user)
-{
-$this->user = $user;
-$this->cart = $this->user->getLatestCart() ?? new Order();
-}
 
-public function addProductToCart(int $productId, int $quantity = 1)
-{
-$product = Product::findOrFail($productId);
-$orderDetail = $this->cart->details()->where('product_id', $product->id)->first();
+    /**
+     * @throws Exception
+     */
+    public function addToCart(CartRequest $request): void
+    {
+        $cart = $this->getCart();
 
-if ($orderDetail) {
-// Jei pasirinktas produktas jau yra krepšelyje, padidinkite kiekį.
-$orderDetail->quantity += $quantity;
-$orderDetail->save();
-} else {
-// Jei pasirinktas produktas dar nėra krepšelyje, pridėkite jį.
-$orderDetail = new OrderDetails();
-$orderDetail->order_id = $this->cart->id;
-$orderDetail->product_id = $product->id;
-$orderDetail->product_name = $product->name;
-$orderDetail->quantity = $quantity;
-$orderDetail->price = $product->price;
-$orderDetail->save();
-}
+        $product = $this->productsManager->getById($request->product_id);
 
-return $this->cart;
-}
+        $cartItem = $this->getCartItem($cart, $product);
 
-public function getCart()
-{
-return $this->cart;
-}
+        if (!$cart->id) {
+            throw new Exception('Cart not found');
+        }
+
+        if (!$cartItem) {
+            $cartItem               = new OrderDetails();
+            $cartItem->order_id     = $cart->id;
+            $cartItem->product_id   = $product->id;
+            $cartItem->product_name = $product->name;
+            $cartItem->quantity     = $request->quantity;
+            $cartItem->price        = $product->price;
+            $cartItem->save();
+            return;
+        }
+
+        $cartItem->increment('quantity', $request->quantity);
+    }
+
+    private function getCart(): Order
+    {
+        /** @var User $user */
+        $user = auth()->user();
+        return $user?->getLatestCart() ?? new Order();
+    }
+
+    public function changeQuantity(Product $product, int $quantity): void
+    {
+        $userCart = $this->getCart();
+
+        $cartItem = $this->getCartItem($userCart, $product);
+
+        $cartItem->quantity = $quantity;
+        $cartItem->save();
+    }
+
+    public function removeFromCart(Product $product): void
+    {
+        $userCart = $this->getCart();
+
+        $cartItem = $this->getCartItem($userCart, $product);
+
+        $cartItem?->delete();
+    }
+
+    public function getCartItem(Order $cart, Model|Product $product): ?OrderDetails
+    {
+        return OrderDetails::where([
+            'order_id'   => $cart->id,
+            'product_id' => $product->id,
+        ])->first() ?? null;
+    }
 }

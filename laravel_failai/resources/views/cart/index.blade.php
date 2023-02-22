@@ -16,12 +16,12 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($cart->details as $detail)
+            @foreach($cart?->details as $cartItem)
                 <tr>
-                    <td>{{ $detail->product_name }}</td>
-                    <td>{{ $detail->quantity }}</td>
-                    <td>{{ $detail->price }}</td>
-                    <td>{{ $detail->total_price }}</td>
+                    <td>{{ $cartItem->product_name }}</td>
+                    <td>{{ $cartItem->quantity }}</td>
+                    <td>{{ $cartItem->price }}</td>
+                    <td>{{ $cartItem->total_price }}</td>
 
                     <td>
 {{--                        <form action="{{ route('product.remove_from_cart') }}" method="POST">--}}
@@ -31,16 +31,31 @@
 {{--                            <button type="submit">Nuimti</button>--}}
 {{--                        </form>--}}
                         <form action="{{route('product.add_to_cart')}}" method="POST">
-                            <input type="hidden" name="product_id" value="{{ $detail->product_id }}">
+                            <input type="hidden" name="product_id" value="{{ $cartItem->product_id }}">
                             <input type="number" name="quantity" value="1">
-                            <input type="submit" value="Į krepšelį">
+                            <x-primary-button type="submit">I krepseli</x-primary-button>
                             @csrf
                         </form>
                         <form action="{{ route('product.remove_from_cart') }}" method="POST">
                             @csrf
-{{--                            <input type="hidden" name="product_id" value="{{ $detail->product_id }}">--}}
-                            <input type="number" name="quantity" value="-1">
-                            <button type="submit">Nuimti</button>
+                            <input type="hidden" name="product_id" value="{{ $cartItem->product_id }}">
+                            <input type="number" name="quantity" value="1">
+                            <x-primary-button type="submit">Nuimti</x-primary-button>
+                        </form>
+                        <form action="{{ route('cart.update', $cartItem->id) }}" method="POST">
+                            @csrf
+                            <input type="text" placeholder="0" name="quantity" value="{{ $cartItem->quantity }}">
+                            <x-primary-button type="submit">Atnaujinti</x-primary-button>
+                        </form>
+                        <form action="{{route('cart.product_remove', ['product' => $cartItem->product_id])}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <x-primary-button
+                               type="submit"
+                                class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
+                            > Pašalinti
+                            </x-primary-button>
+
                         </form>
                     </td>
                 </tr>

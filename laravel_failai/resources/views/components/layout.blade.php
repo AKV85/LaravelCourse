@@ -32,6 +32,11 @@
 
 <body class="mb-48">
 <header>
+
+
+            @if (auth()?->user()?->isPersonnel())
+
+
 <nav class="flex justify-between items-center mb-4">
     <a href="/"
     ><img class="logo pl-2 pt-2"
@@ -74,6 +79,7 @@
         </li>
     </ul>
 </nav>
+        @endauth
 </header>
 <main>
 {{$slot}}

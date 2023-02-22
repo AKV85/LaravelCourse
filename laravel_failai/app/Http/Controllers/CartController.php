@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CartProductUpdateRequest;
 use App\Http\Requests\CartRequest;
 use App\Http\Requests\RemoveProductFromCartRequest;
 use App\Managers\CartManager;
@@ -16,24 +17,28 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-//    public function create(CartRequest $request)
-//    {
-//        $manager = new OrderDetails(); // Suemuliavau OrderDetail Managerį
-//
-//        $duomenys = $request->all();
-//        /** @var User $user */
-//        $user     = auth()->user();         // Siuo metu prisijunges vartotojas
-//
-//        // Paimame vartotojo paskutinį krepšelį ir priskiriam i masyva saugojimui
-//        $duomenys['order_id']     = $user->getLatestCart()->id;
-//        $product                  = Product::find($request->product_id);
-//        $duomenys['product_name'] = $product->name;    // Paimame produkto pavadinima ir priskiriam i masyva saugojimui
-//        $duomenys['price']        = $product->price;   // Paimame produkto kaina ir priskiriam i masyva saugojimui
-//
-//        $manager->create($duomenys); // Sukuriu naują OrderDetail įrašą
-//
-//        return redirect()->back()->with('success', __('messages.product_added_to_cart'));
-//    }
+
+    public function __construct(private readonly CartManager $manager)
+    {
+    }
+
+
+    public function sukurtiUzsakyma(Request $request)
+    {
+        $cart = new Order();
+        $cart->user_id = auth::user()->id;
+        $cart->status = Order::STATUS_NEW;
+        $cart->billing_address_id = $request->billing_address_id;
+        $cart->shipping_address_id = $request->shipping_address_id;
+        $cart->save();
+
+        foreach ($request->cartItems as $cartItem) {
+            $this->manager->addToCart($cartItem);
+        }
+
+        return redirect()->back()->with('success', __('messages.product_added_to_cart'));
+    }
+
     public function index()
     {
         $user = auth()->user();
@@ -41,43 +46,13 @@ class CartController extends Controller
         return view('cart.index', compact('cart'));
     }
 
-
     public function create(CartRequest $request)
     {
-        /** @var User $user */
-        $user = auth()->user(); // Siuo metu prisijunges vartotojas
+        $this->manager->addToCart($request);
 
-        // Patikrinkite, ar vartotojas turi krepšelį.
-        $cart = $user->getLatestCart();
-
-        if (!$cart) {
-            // Jei vartotojas neturi krepšelio, sukurkite naują krepšelį.
-            $cart = new Order();
-            $cart->user_id = $user->id;
-            $cart->save();
-        }
-
-        $product = Product::find($request->product_id);
-        $orderDetail = $cart->details()->where('product_id', $product->id)->first();
-
-        if ($orderDetail) {
-            // Jei pasirinktas produktas jau yra krepšelyje, padidinkite kiekį.
-            $orderDetail->quantity += $request->quantity;
-            $orderDetail->save();
-        } else {
-            // Jei pasirinktas produktas dar nėra krepšelyje, pridėkite jį.
-            $orderDetail = new OrderDetails();
-            $orderDetail->order_id = $cart->id;
-            $orderDetail->product_id = $product->id;
-            $orderDetail->product_name = $product->name;
-            $orderDetail->quantity = $request->quantity;
-            $orderDetail->price = $product->price;
-            $orderDetail->save();
-        }
-
-        return redirect()->route('cart.index');
-//        return redirect()->back()->with('success', __('messages.product_added_to_cart'));
+        return redirect()->back()->with('success', __('messages.product_added_to_cart'));
     }
+
 
     public function removeProduct(RemoveProductFromCartRequest $request)
     {
@@ -98,4 +73,20 @@ class CartController extends Controller
 
         return redirect()->route('cart.index');
     }
+
+    public function update(CartProductUpdateRequest $request, Product $product)
+    {
+        $this->manager->changeQuantity($product, $request->quantity);
+
+        return redirect()->back()->with('success', __('messages.cart_updated', ['product' => $product->name]));
+    }
+
+    public function destroy(Product $product)
+    {
+        $this->manager->removeFromCart($product);
+
+        return redirect()->back()->with('success', __('messages.product_removed_from_cart', ['product' => $product->name]));
+    }
+
+
 }

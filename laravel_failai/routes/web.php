@@ -18,31 +18,41 @@ use App\Http\Controllers\ProductController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\IsPersonnel;
+
 
 Route::group(['middleware' => SetLocale::class], function () {
-    Route::get('/', HomeController::class);
+    Route::get('/', HomeController::class)->name('home');
     Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
     Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
-    Route::post('product/add', [CartController::class, 'create'])->name('product.add_to_cart');
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/remove-product', [CartController::class, 'removeProduct'])->name('product.remove_from_cart');
-    Route::get('/order-summary', [OrderSummaryController::class,'index'])->name('order_summary');
 
+//    Route::post('product/add', [CartController::class, 'create'])->name('product.add_to_cart');
+//    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+//    Route::post('/remove-product', [CartController::class, 'removeProduct'])->name('product.remove_from_cart');
+    Route::get('/order-summary', [OrderSummaryController::class, 'index'])->name('order_summary');
+    Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
 
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('/', [CartController::class, 'index'])->name('cart.index');
+        Route::post('/product/add', [CartController::class, 'create'])->name('product.add_to_cart');
+        Route::post('/remove-product', [CartController::class, 'removeProduct'])->name('product.remove_from_cart');
+        Route::post('product/{product}/update', [CartController::class, 'update'])->name('cart.product_update');
+        Route::delete('product/{product}/delete', [CartController::class, 'destroy'])->name('cart.product_remove');
+    });
 
-    Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', IsPersonnel::class]], function () {
         Route::get('/', DashBoardController::class)->name('dashboard');
         Route::delete('/product/file/{file}', [ProductsController::class, 'destroyFile'])->name('product.destroy-file');
         Route::resources([
-            'products'     => ProductsController::class,
-            'categories'   => CategoriesController::class,
-            'orders'       => OrderController::class,
-            'statuses'     => StatusController::class,
-            'addresses'    => AddressController::class,
-            'users'        => UserController::class,
-            'persons'      => PersonController::class,
+            'products' => ProductsController::class,
+            'categories' => CategoriesController::class,
+            'orders' => OrderController::class,
+            'statuses' => StatusController::class,
+            'addresses' => AddressController::class,
+            'users' => UserController::class,
+            'persons' => PersonController::class,
             'paymentTypes' => PaymentTypeController::class,
-            'ordersDetails'=> OrderDetailsController::class,
+            'ordersDetails' => OrderDetailsController::class,
         ]);
     });
 });

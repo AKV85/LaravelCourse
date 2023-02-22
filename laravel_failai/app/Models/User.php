@@ -86,7 +86,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Person::class);
     }
 
-
     public function addresses(): HasMany
     {
         return $this->hasMany(Address::class);
@@ -94,7 +93,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getInitials(): string
     {
-        $parts    = explode(' ', $this->person);
+        $parts = explode(' ', $this->person);
         $initials = '';
         foreach ($parts as $part) {
             $initials .= mb_substr($part, 0, 1);
@@ -123,6 +122,26 @@ class User extends Authenticatable implements MustVerifyEmail
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function isManager(): bool
+    {
+        return $this->role === self::ROLE_MANAGER;
+    }
+
+    public function isPM(): bool
+    {
+        return $this->role === self::ROLE_PM;
+    }
+
+    public function isPersonnel(): bool
+    {
+        return in_array($this->role, [self::ROLE_ADMIN, self::ROLE_MANAGER, self::ROLE_PM]);
     }
 
     public function __toString(): string
