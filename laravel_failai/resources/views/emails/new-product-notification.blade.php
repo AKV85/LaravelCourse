@@ -1,0 +1,1 @@
+Gauta nauja preke.

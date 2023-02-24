@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $order_id
  * @property string $product_name
  * @property int $product_id
+ * @property Product $product
  * @property int $quantity
  * @property string $price
  * @property int $status_id
@@ -55,6 +56,8 @@ class OrderDetails extends Model
 // modelio atributus, kurie yra išvestiniai iš kitų modelio atributų, bet nesaugojami duomenų bazėje.
 //Visi šie metodai yra naudojami tam, kad total_price atributas būtų prieinamas ir naudojamas lengvai modelio
 // objektuose ir JSON reprezentacijose, taip pat būtų automatizuotas total_price skaičiavimas pagal quantity ir price reikšmes.
+
+
     public function getTotalPriceAttribute()
     {
         return $this->quantity * $this->price;

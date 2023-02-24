@@ -3,13 +3,12 @@
 namespace App\Managers;
 
 use App\Models\Order;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Collection;
 
 class OrderManager
 {
-
+    public function getByStatus(int $statusId): Collection
+    {
+        return Order::where('status_id', $statusId)->get();
+    }
 }

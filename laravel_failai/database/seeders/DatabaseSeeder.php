@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
                 StatusesSeed::class,
                 AdminUserSeed::class,
                 CategoriesSeed::class,
+//                ProductsSeed::class,
             ]
         );
     }

@@ -27,12 +27,23 @@ return new class extends Migration {
      *
      * @return void
      */
+//    public function down(): void
+//    {
+//        Schema::table('payments', function (Blueprint $table) {
+//            $table->string('name')->nullable();
+//            $table->dropColumn('order_id');
+//            $table->dropColumn('payment_type_id');
+//        });
+//    }
     public function down(): void
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->string('name');
+//            $table->string('name')->nullable();
+            $table->dropForeign(['payment_type_id']);
+            $table->dropForeign(['order_id']);
             $table->dropColumn('order_id');
             $table->dropColumn('payment_type_id');
         });
     }
+
 };

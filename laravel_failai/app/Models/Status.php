@@ -12,10 +12,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $type
  * @property Carbon $created_at
  * @property Carbon updated_at
+ *  * @method static where(string[] $array)
  */
 class Status extends Model
 {
     use HasFactory;
+
+    public const TYPES = ['order', 'payment', 'category',
+        'user', 'product', 'order_details'];
+    public const STATE_NEW = 'new';
+
+
     protected $fillable = [
         'name',
         'type'
@@ -25,4 +32,9 @@ class Status extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }

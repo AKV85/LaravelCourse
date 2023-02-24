@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Managers\OrderManager;
@@ -19,15 +20,31 @@ class OrderController extends Controller
     {
         $orders = Order::query()->with(['user','shippingAddress',
             'billingAddress','payment','status'])->get();
+
+
+
         return view('orders.index',['orders'=>Order::orderBy("id")->paginate(6)]);
+
     }
+
+
+
+
+
     public function create()
     {
         return view('orders.create');
     }
-    public function store(OrderRequest $request)
-    {
-        $order = Order::create($request->all());
+    public function store(OrderRequest $request){
+
+        // Pradedamas užsakymo kurimas
+        $order = Order::create($request->all()) +
+            ['status_id' => Status::query()->
+            where(['type'=>'order','name'=>
+                Status::STATE_NEW])->first()->id];
+        $this->dispatch(new OrderCreated($order));
+        // baigiau uzsakymo kuryma
+
         return redirect()->route('orders.show',$order);
     }
     public function show(Order $order)

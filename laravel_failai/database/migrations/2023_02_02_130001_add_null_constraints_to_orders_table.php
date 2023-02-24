@@ -29,10 +29,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->unsignedBigInteger('payment_id')->nullable(false)->change();
-            $table->unsignedBigInteger('status_id')->nullable(false)->change();
-            $table->unsignedBigInteger('shipping_address_id')->nullable(false)->change();
-            $table->unsignedBigInteger('billing_address_id')->nullable(false)->change();
+            $table->unsignedBigInteger('payment_id')->nullable()->change();
+            $table->unsignedBigInteger('status_id')->nullable()->change();
+            $table->unsignedBigInteger('shipping_address_id')->nullable()->change();
+            $table->unsignedBigInteger('billing_address_id')->nullable()->change();
         });
     }
 };

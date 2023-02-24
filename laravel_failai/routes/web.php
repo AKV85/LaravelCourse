@@ -26,11 +26,7 @@ Route::group(['middleware' => SetLocale::class], function () {
     Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
     Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
 
-//    Route::post('product/add', [CartController::class, 'create'])->name('product.add_to_cart');
-//    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-//    Route::post('/remove-product', [CartController::class, 'removeProduct'])->name('product.remove_from_cart');
     Route::get('/order-summary', [OrderSummaryController::class, 'index'])->name('order_summary');
-    Route::post('cart/update', [CartController::class, 'update'])->name('cart.update');
 
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/', [CartController::class, 'index'])->name('cart.index');

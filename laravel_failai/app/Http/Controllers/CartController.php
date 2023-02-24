@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-
     public function __construct(private readonly CartManager $manager)
     {
     }
