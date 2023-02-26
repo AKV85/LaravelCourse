@@ -18,7 +18,7 @@
 
             <div class="card-action">
                 <nav class="flex justify-between items-center mb-4">
-                    <x-forms.buttons.action :model="$order" mainRoute="orders" :showBack="true" />
+                    <x-forms.buttons.action :model="$order" mainRoute="orders" :showBack="true"/>
                 </nav>
             </div>
 

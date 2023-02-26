@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Managers\CategoryManager;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
@@ -48,4 +49,8 @@ class CategoriesController extends Controller
         return redirect()->route('categories.index');
     }
 }
+
+
+
+
 

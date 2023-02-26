@@ -1,27 +1,26 @@
 <x-layout>
     @include('partials._hero')
     <x-card class="p-10 max-w-lg mx-auto mt-24">
-    <h1>Atnaujinti {{$paymentType->name}}</h1><br><hr>
+        <div class="card">
+            <div class="card-image">
+                <img src="https://picsum.photos/300" alt="img">
+                <span class="card-title">{{ $paymentType->name }}</span>
+            </div>
+            <div class="card-content">
+                <div>ID: {{$paymentType->id}}</div>
+                <p>Name: {{ $paymentType->name }}</p>
+                <p>Creation date: {{ $paymentType->created_at }}</p>
+                <p>Last updated: {{ $paymentType->updated_at }}</p>
+            </div>
 
-    <span>Redagavimo forma</span><hr>
-    <form action="{{route('paymentTypes.update', $paymentType->id)}}" method="post">
-        @method('PUT')
+            <div class="card-action">
+                <nav class="flex justify-between items-center mb-4">
+                    <x-forms.buttons.action :model="$paymentType" mainRoute="paymentTypes" :showBack="true"/>
+                </nav>
+            </div>
 
-                @csrf
-        <x-forms.inputs :model="$paymentType ?? (new \App\Models\PaymentType())"
-                        fields="name"/>
+        </div>
 
-                <div class="mb-6">
-
-                    <button
-                        type="submit"
-                        class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
-                    >
-                        Atnaujinti
-                    </button>
-
-                    <a href="/paymentTypes" class="text-black ml-4"> Atgal </a>
-                </div>
-            </form>
     </x-card>
 </x-layout>
+

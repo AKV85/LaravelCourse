@@ -21,7 +21,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="status_id"
                     placeholder="Pvz: ..."
-                    value="{{old('status_id')}}"                    />
+                    value="{{old('status_id')}}"/>
 
                 @error('status_id')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>

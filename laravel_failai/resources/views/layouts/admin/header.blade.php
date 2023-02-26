@@ -1,4 +1,4 @@
-<<nav class="flex justify-between items-center mb-4">
+<nav class="flex justify-between items-center mb-4">
     <a href="/"
     ><img class="logo w-36" src="{{asset('images/logo.jpg')}}" alt=""
         /></a>

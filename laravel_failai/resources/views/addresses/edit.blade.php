@@ -1,9 +1,11 @@
 <x-layout>
     @include('partials._hero')
     <x-card class="p-10 max-w-lg mx-auto mt-24">
-        <h1>Atnaujinti {{$address->name}}</h1><br><hr>
+        <h1>Atnaujinti {{$address->name}}</h1><br>
+        <hr>
 
-        <span>Redagavimo forma</span><hr>
+        <span>Redagavimo forma</span>
+        <hr>
         <form action="{{route('addresses.update', $address->id)}}"
               method="post">
             @method('PUT')

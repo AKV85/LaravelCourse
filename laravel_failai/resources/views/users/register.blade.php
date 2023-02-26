@@ -7,7 +7,7 @@
             <p class="mb-4">Sukurkite savo paskyra</p>
         </header>
 
-        <form  method="POST" action="/users">
+        <form method="POST" action="/users">
             @csrf
             <div class="mb-6">
                 <label for="name"
@@ -23,7 +23,7 @@
 
                 @error('name')
                 <p class="text-red-500 text-xs mt-1">
-                  {{$message}}
+                    {{$message}}
                 </p>
                 @enderror
             </div>

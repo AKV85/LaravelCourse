@@ -26,6 +26,7 @@ Route::group(['middleware' => SetLocale::class], function () {
     Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
     Route::get('/category/{category:slug}', [CategoryController::class, 'show'])->name('category.show');
 
+
     Route::get('/order-summary', [OrderSummaryController::class, 'index'])->name('order_summary');
 
     Route::group(['prefix' => 'cart'], function () {
